@@ -1,19 +1,14 @@
-import { Field, Int, ObjectType } from 'type-graphql';
+import { Field, Float, Int, ObjectType } from 'type-graphql';
 
 @ObjectType()
 export class Image {
-  @Field(type => Int)
-  aspect_ratio: number;
-  @Field(type => String)
-  file_path: string;
-  @Field(type => Int)
-  height: number;
-  @Field(type => String, { nullable: true })
-  iso_639_1: string;
-  @Field(type => Int)
-  vote_average: number;
-  @Field(type => Int)
-  vote_count: number;
-  @Field(type => Int)
-  width: number;
+  @Field(type => Float, { nullable: true }) aspect_ratio: number;
+  @Field(type => String, { nullable: true }) file_path: string;
+  @Field(type => String, { nullable: true }) file_type: string;
+  @Field(type => Int, { nullable: true }) height: number;
+  @Field(type => Int, { nullable: true }) id: number;
+  @Field(type => String, { nullable: true }) iso_639_1: string | null;
+  @Field(type => Float, { nullable: true }) vote_average: number;
+  @Field(type => Int, { nullable: true }) vote_count: number;
+  @Field(type => Int, { nullable: true }) width: number;
 }
