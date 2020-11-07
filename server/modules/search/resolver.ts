@@ -11,7 +11,7 @@ export class SearchResolver {
 
   searchUrl = `${baseUrl}search/`;
 
-  apiKey = apiKey;
+  api_key = apiKey;
 
   @Query(returns => SearchCollections)
   async searchCollections(@Arg("input") input: SearchCollectionsInput): Promise<SearchCollections> {
@@ -20,7 +20,7 @@ export class SearchResolver {
       const url = `${this.searchUrl}collection`;
       const { language, page, query } = input;
       let params = {
-        api_key: apiKey,
+        api_key: this.api_key,
         page,
         query
       };
@@ -47,7 +47,7 @@ export class SearchResolver {
       const url = `${this.searchUrl}movie`;
       const { include_adult, language, page, primary_release_year, query, region, year} = input;
       let params = {
-        api_key: apiKey,
+        api_key: this.api_key,
         page,
         query
       };
@@ -78,7 +78,7 @@ export class SearchResolver {
       const url = `${this.searchUrl}person`;
       const { include_adult, language, page, query, region } = input;
       let params = {
-        api_key: apiKey,
+        api_key: this.api_key,
         page,
         query
       };
@@ -107,7 +107,7 @@ export class SearchResolver {
       const url = `${this.searchUrl}tv`;
       const { first_air_date_year, include_adult, language, page, query } = input;
       let params = {
-        api_key: apiKey,
+        api_key: this.api_key,
         page,
         query
       };
