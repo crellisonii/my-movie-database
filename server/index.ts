@@ -29,11 +29,11 @@ async function bootstrap() {
 
   server.applyMiddleware({ app });
 
-    app.listen(port, () => {
-        console.log(
-            `Server is running, GraphQL Playground available at http://localhost:${port}/playground`
-        );
-    });
+  app.listen(port, () => {
+    console.log(
+      `Server is running, GraphQL Playground available at http://localhost:${port}/playground`
+    );
+  });
 }
 
 bootstrap();
