@@ -1,3 +1,4 @@
+export * from './collections';
 export * from './list-results';
 export * from './movie-list-results'
 export * from './pagination';
