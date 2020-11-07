@@ -1,8 +1,8 @@
 import "reflect-metadata";
 
+import { CollectionResolver, GenresResolver, SearchResolver } from './modules';
+
 import { ApolloServer } from 'apollo-server-express';
-import { CollectionResolver } from './modules/collections';
-import { SearchResolver } from './modules/search';
 import { buildSchema } from 'type-graphql';
 import express from 'express';
 import { graphqlRouter } from "./routes";
@@ -14,8 +14,9 @@ async function bootstrap() {
 
   const schema = await buildSchema({
     resolvers: [
-      SearchResolver,
-      CollectionResolver
+      CollectionResolver,
+      GenresResolver,
+      SearchResolver
     ]
   });
 
