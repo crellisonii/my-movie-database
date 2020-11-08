@@ -30,7 +30,7 @@ export class CollectionResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('getCollection error: \n', e);
       throw new Error(e);
     }
   }
