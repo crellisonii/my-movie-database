@@ -26,7 +26,7 @@ export class SearchTVShows extends Pagination {
 }
 
 @ObjectType()
-export class SearchCollectionsResults {
+class SearchCollectionsResults {
   @Field(type => Int, { nullable: true }) id: number;
   @Field(type => String, { nullable: true }) backdrop_path: string | null;
   @Field(type => String, { nullable: true }) name: string;
@@ -34,10 +34,10 @@ export class SearchCollectionsResults {
 }
 
 @ObjectType()
-export class SearchMoviesResults extends MovieListResults {}
+class SearchMoviesResults extends MovieListResults {}
 
 @ObjectType()
-export class SearchPeopleResults {
+class SearchPeopleResults {
   @Field(type => Boolean, { nullable: true }) adult: boolean;
   @Field(type => Int, { nullable: true }) id: number;
   @Field(type => String, { nullable: true }) name: string;
@@ -47,9 +47,9 @@ export class SearchPeopleResults {
 }
 
 @ObjectType()
-export class SearchTVShowsResults extends TVListResults {}
+class SearchTVShowsResults extends TVListResults {}
 
 @ObjectType()
-export class KnownFor extends ListResult {
+class KnownFor extends ListResult {
   @Field(type => String) media_type: string;
 }
