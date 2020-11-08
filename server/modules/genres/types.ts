@@ -6,7 +6,7 @@ export class GenresResult {
 }
 
 @ObjectType()
-export class Genre {
+class Genre {
   @Field(type => Int, { nullable: true }) id: number;
   @Field(type => String, { nullable: true }) name: string;
 }

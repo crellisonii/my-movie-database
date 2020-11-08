@@ -10,7 +10,7 @@ export class CollectionResult {
 }
 
 @ObjectType()
-export class CollectionResultParts {
+class CollectionResultParts {
   @Field(type => Boolean, { nullable: true }) adult: boolean;
   @Field(type => [Int], { nullable: true }) genre_ids: number[];
   @Field(type => Int, { nullable: true }) id: number;

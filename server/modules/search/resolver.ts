@@ -35,7 +35,7 @@ export class SearchResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('searchCollections error: \n', e);
       throw new Error(e);
     }
   }
@@ -66,7 +66,7 @@ export class SearchResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('searchMovies error: \n', e);
       throw new Error(e);
     }
   }
@@ -95,7 +95,7 @@ export class SearchResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('searchPeople error: \n', e);
       throw new Error(e);
     }
   }
@@ -124,7 +124,7 @@ export class SearchResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('searchTVShows error: \n', e);
       throw new Error(e);
     }
   }

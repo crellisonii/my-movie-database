@@ -31,7 +31,7 @@ export class GenresResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('getMovieGenres error: \n', e);
       throw new Error(e);
     }
   }
@@ -54,7 +54,7 @@ export class GenresResolver {
       return resp.data;
     }
     catch (e) {
-      console.log('Error: ', e);
+      console.log('getTVGenres error: \n', e);
       throw new Error(e);
     }
   }
