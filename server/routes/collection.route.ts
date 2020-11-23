@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response, Router } from 'express';
 import { getCollectionsDetails, getCollectionsImages } from '../controllers';
+
+import { Router } from 'express';
 
 export const router = Router();
 

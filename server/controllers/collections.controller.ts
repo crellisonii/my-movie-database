@@ -1,4 +1,4 @@
-import { CollectionInputQuery, CollectionQuery } from '../interfaces';
+import { CollectionInput, CollectionQueryString } from '../interfaces';
 import { NextFunction, Request, Response } from 'express';
 import axios, { AxiosRequestConfig } from 'axios';
 
@@ -10,9 +10,9 @@ const collectionUrl = 'collection'
 export const getCollectionsDetails = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.collectionId;
-    const { language }: CollectionInputQuery = req.query;
+    const { language }: CollectionInput = req.query;
     const url = `${baseUrl}${collectionUrl}/${id}`;
-    const params: CollectionQuery = {
+    const params: CollectionQueryString = {
       api_key: apiKey,
       language: language ? language : 'en-US'
     };
@@ -32,9 +32,9 @@ export const getCollectionsDetails = async (req: Request, res: Response, next: N
 
 export const getCollectionsImages = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.collectionId;
-  const { language }: CollectionInputQuery = req.query;
+  const { language }: CollectionInput = req.query;
   const url = `${baseUrl}${collectionUrl}/${id}/images`;
-  const params: CollectionQuery = {
+  const params: CollectionQueryString = {
     api_key: apiKey,
     language: language ? language : 'en-US'
   }

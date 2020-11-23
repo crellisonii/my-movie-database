@@ -1,6 +1,6 @@
+import { collectionRouter, genresRouter } from "./routes";
 import { json, urlencoded } from 'body-parser';
 
-import { collectionRouter } from "./routes";
 import express from 'express';
 import morgan from 'morgan';
 
@@ -11,4 +11,5 @@ app.use(morgan('dev'));
 app.use(urlencoded({ extended: false }));
 app.use(json());
 
-app.use('/collection', collectionRouter)
+app.use('/collection', collectionRouter);
+app.use('/genre', genresRouter);
