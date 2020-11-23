@@ -1,5 +1,5 @@
-import { router as graphqlRouter } from './graphql.route';
+import { router as collectionRouter } from './collection.route';
 
 export {
-  graphqlRouter
+  collectionRouter
 }
