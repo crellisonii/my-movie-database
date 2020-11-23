@@ -1,43 +1,19 @@
-import "reflect-metadata";
+import { graphqlRouter, personRouter } from "./routes";
 
-import { CollectionResolver, CreditsResolver, GenresResolver, SearchResolver } from './modules';
-
-import { ApolloServer } from 'apollo-server-express';
-import { PeopleResolver } from './modules/people/resolver';
-import { buildSchema } from 'type-graphql';
 import express from 'express';
-import { graphqlRouter } from "./routes";
+import morgan from 'morgan';
 import { serverPort } from "./env";
 
 const port = serverPort || 4000;
 
-async function bootstrap() {
+const app = express();
 
-  const schema = await buildSchema({
-    resolvers: [
-      CollectionResolver,
-      CreditsResolver,
-      GenresResolver,
-      PeopleResolver,
-      SearchResolver
-    ]
-  });
+app.use(morgan('dev'));
 
-  const server = new ApolloServer({
-    schema,
-    playground: true
-  });
+app.use('/person', personRouter);
 
-  const app = express();
-  app.use(graphqlRouter);
-
-  server.applyMiddleware({ app });
-
-  app.listen(port, () => {
-    console.log(
-      `Server is running, GraphQL Playground available at http://localhost:${port}/playground`
-    );
-  });
-}
-
-bootstrap();
+app.listen(port, () => {
+  console.log(
+    `Server is running and listening at http://localhost:${port}`
+  );
+});
