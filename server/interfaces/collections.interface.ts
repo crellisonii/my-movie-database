@@ -1,3 +1,14 @@
+// Input interfaces
+export interface CollectionInput {
+  language?: string;
+}
+
+export interface CollectionQueryString {
+  api_key: string;
+  language: string;
+}
+
+// Types interfaces
 interface DetailsParts {
   adult: boolean;
   genre_ids: number[];
@@ -21,15 +32,6 @@ interface Image {
   vote_average: number;
   vote_count: number;
   width: number;
-}
-
-export interface CollectionInputQuery {
-  language?: string;
-}
-
-export interface CollectionQuery {
-  api_key: string;
-  language: string;
 }
 
 export interface CollectionDetails {
