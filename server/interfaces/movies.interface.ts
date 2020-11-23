@@ -1,17 +1,20 @@
-// Input interfaces
 import { Genre } from './genres.interface';
+
+// Input interfaces
 export interface MovieInput {
   language?: string;
   append_to_response?: string;
 }
 
-export interface MovieDetailsQueryString {
+export interface MovieQueryString {
   api_key: string;
   language: string;
   append_to_response?: string;
 }
 
 // Types interfaces
+
+// Movie details
 interface ProductionCompanies {
   id?: number;
   logo_path?: string;
@@ -55,4 +58,40 @@ export interface MovieDetails {
   video?: boolean;
   vote_average?: number;
   vote_count?: number;
+}
+
+// Movie Credits
+interface MovieCast {
+  adult?: boolean;
+  cast_id?: number;
+  character?: string;
+  credit_id?: string;
+  gender?: number;
+  id?: number;
+  known_for_department?: string;
+  name?: string;
+  order?: number;
+  original_name?: string;
+  popularity?: number;
+  profile_path?: string;
+}
+
+interface MovieCrew {
+  adult?: boolean;
+  credit_id?: string;
+  department?: string;
+  gender?: number;
+  id?: number;
+  job?: string;
+  known_for_department?: string;
+  name?: string;
+  original_name?: string;
+  popularity?: number;
+  profile_path?: string;
+}
+
+export interface MovieCredits {
+  cast?: MovieCast[];
+  crew?: MovieCrew[];
+  id?: number;
 }
