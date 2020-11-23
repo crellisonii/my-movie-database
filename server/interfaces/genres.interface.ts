@@ -9,7 +9,7 @@ export interface GenresQueryString {
 }
 
 // Types interfaces
-interface Genre {
+export interface Genre {
   id?: number;
   name?: string;
 }
