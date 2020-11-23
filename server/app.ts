@@ -1,4 +1,4 @@
-import { collectionRouter, genresRouter } from "./routes";
+import { collectionRouter, creditsRouter, genresRouter } from "./routes";
 import { json, urlencoded } from 'body-parser';
 
 import express from 'express';
@@ -12,4 +12,5 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 
 app.use('/collection', collectionRouter);
+app.use('/credit', creditsRouter);
 app.use('/genre', genresRouter);
