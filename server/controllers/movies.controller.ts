@@ -158,3 +158,16 @@ export const getMovieNowPlaying = async (req: Request, res: Response, next: Next
     throw new Error(e);
   }
 }
+
+export const getMoviePopular = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const url = `${baseUrl}movie/popular`;
+    const params = getParams(req);
+    const options = getOptions(params, url);
+    const resp = await axios(options);
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
