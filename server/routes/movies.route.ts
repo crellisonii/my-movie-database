@@ -1,4 +1,4 @@
-import { getMovieCredits, getMovieDetails, getMovieImages, getMovieRecommendations } from '../controllers';
+import { getMovieCredits, getMovieDetails, getMovieImages, getMovieRecommendations, getMovieReviews } from '../controllers';
 
 import { Router } from 'express';
 
@@ -11,3 +11,5 @@ router.get('/:movieId/credits', getMovieCredits);
 router.get('/:movieId/images', getMovieImages);
 
 router.get('/:movieId/recommendations', getMovieRecommendations);
+
+router.get('/:movieId/reviews', getMovieReviews);
