@@ -3,17 +3,8 @@ export interface GenresInput {
   language?: string;
 }
 
+// Query String
 export interface GenresQueryString {
   api_key: string;
   language: string;
-}
-
-// Types interfaces
-export interface Genre {
-  id?: number;
-  name?: string;
-}
-
-export interface Genres {
-  genres?: Genre[];
 }
