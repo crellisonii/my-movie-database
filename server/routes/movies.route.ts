@@ -1,4 +1,4 @@
-import { getMovieCredits, getMovieDetails, getMovieImages, getMovieLatest, getMovieNowPlaying, getMoviePopular, getMovieRecommendations, getMovieReviews, getMovieSimilar, getMovieVideos } from '../controllers';
+import { getMovieCredits, getMovieDetails, getMovieImages, getMovieLatest, getMovieNowPlaying, getMoviePopular, getMovieRecommendations, getMovieReviews, getMovieSimilar, getMovieUpcoming, getMovieVideos } from '../controllers';
 
 import { Router } from 'express';
 
@@ -25,3 +25,5 @@ router.get('/latest', getMovieLatest);
 router.get('/now_playing', getMovieNowPlaying);
 
 router.get('/popular', getMoviePopular);
+
+router.get('/upcoming', getMovieUpcoming);
