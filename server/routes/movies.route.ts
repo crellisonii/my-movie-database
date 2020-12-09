@@ -1,15 +1,21 @@
-import { getMovieCredits, getMovieDetails, getMovieImages, getMovieRecommendations, getMovieReviews } from '../controllers';
+import { getMovieCredits, getMovieDetails, getMovieImages, getMovieRecommendations, getMovieReviews, getMovieSimilar, getMovieVideos } from '../controllers';
 
 import { Router } from 'express';
 
 export const router = Router();
 
-router.get('/:movieId', getMovieDetails);
+const idParams = '/:movieId';
 
-router.get('/:movieId/credits', getMovieCredits);
+router.get(idParams, getMovieDetails);
 
-router.get('/:movieId/images', getMovieImages);
+router.get(`${idParams}/credits`, getMovieCredits);
 
-router.get('/:movieId/recommendations', getMovieRecommendations);
+router.get(`${idParams}/images`, getMovieImages);
 
-router.get('/:movieId/reviews', getMovieReviews);
+router.get(`${idParams}/recommendations`, getMovieRecommendations);
+
+router.get(`${idParams}/reviews`, getMovieReviews);
+
+router.get(`${idParams}/similar`, getMovieSimilar);
+
+router.get(`${idParams}/videos`, getMovieVideos);
