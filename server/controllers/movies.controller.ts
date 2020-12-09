@@ -17,13 +17,14 @@ const getMovieUrl = (id: string, urlSuffix?: string): string => {
 }
 
 const getParams = (req: Request): MovieQueryString => {
-  const { append_to_response, language, page }: MovieInput = req.query;
+  const { append_to_response, language, page, region }: MovieInput = req.query;
   let params = {
     api_key: apiKey,
     language: language ? language : 'en-US',
   };
   params = append_to_response ? _.assign(params, { append_to_response }) : params;
   params = page ? _.assign(params, { page }) : params;
+  params = region ? _.assign(params, { region }) : params;
   return params;
 }
 
