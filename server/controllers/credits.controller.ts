@@ -7,7 +7,7 @@ import { baseUrl } from '../constants/url.constant';
 
 export const getCredits = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.creditId;
-  const url = `${baseUrl}credit/${id}`;
+  const url = `${baseUrl}/credit/${id}`;
   const params: CreditsQueryString = {
     api_key: apiKey
   };

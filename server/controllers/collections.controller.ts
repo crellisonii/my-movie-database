@@ -10,7 +10,7 @@ const getCollectionsId = (req: Request): string => {
 }
 
 const getUrl = (id: string, urlSuffix?: string): string => {
-  let url = `${baseUrl}collection/${id}`;
+  let url = `${baseUrl}/collection/${id}`;
   return urlSuffix ? `${url}/${urlSuffix}` : url;
 }
 

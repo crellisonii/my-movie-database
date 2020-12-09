@@ -6,7 +6,7 @@ import { apiKey } from '../env';
 import { baseUrl } from '../constants/url.constant';
 
 const getUrl = (urlSuffix: string): string => {
-  return `${baseUrl}genre/${urlSuffix}`;
+  return `${baseUrl}/genre/${urlSuffix}`;
 }
 
 const getParams = (req: Request): GenresQueryString => {
