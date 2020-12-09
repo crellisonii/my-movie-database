@@ -90,3 +90,17 @@ export const getMovieRecommendations = async (req: Request, res: Response, next:
     throw new Error(e);
   }
 }
+
+export const getMovieReviews = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = getMovieId(req);
+    const url = getMovieUrl(id, 'reviews');
+    const params = getParams(req);
+    const options = getOptions(params, url);
+    const resp = await axios(options);
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
