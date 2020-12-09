@@ -11,7 +11,7 @@ const getMovieId = (req: Request): string => {
 }
 
 const getMovieUrl = (id: string, urlSuffix?: string): string => {
-  let url = `${baseUrl}movie/${id}`;
+  let url = `${baseUrl}/movie/${id}`;
   url = urlSuffix ? `${url}/${urlSuffix}` : url;
   return url;
 }
@@ -135,7 +135,7 @@ export const getMovieVideos = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieLatest = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}movie/latest`;
+    const url = `${baseUrl}/movie/latest`;
     const params = getParams(req);
     const options = getOptions(params, url);
     const resp = await axios(options);
@@ -148,7 +148,7 @@ export const getMovieLatest = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieNowPlaying = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}movie/now_playing`;
+    const url = `${baseUrl}/movie/now_playing`;
     const params = getParams(req);
     const options = getOptions(params, url);
     const resp = await axios(options);
@@ -161,7 +161,33 @@ export const getMovieNowPlaying = async (req: Request, res: Response, next: Next
 
 export const getMoviePopular = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}movie/popular`;
+    const url = `${baseUrl}/movie/popular`;
+    const params = getParams(req);
+    const options = getOptions(params, url);
+    const resp = await axios(options);
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getMovieTopRated = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const url = `${baseUrl}/movie/top_rated`;
+    const params = getParams(req);
+    const options = getOptions(params, url);
+    const resp = await axios(options);
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getMovieUpcoming = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const url = `${baseUrl}/movie/top_rated`;
     const params = getParams(req);
     const options = getOptions(params, url);
     const resp = await axios(options);
