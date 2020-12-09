@@ -1,4 +1,4 @@
-import { getMovieGenres, getTVGenres } from '../controllers/genres.controller';
+import { getMovieGenres, getTVGenres } from '../controllers';
 
 import { Router } from 'express';
 
