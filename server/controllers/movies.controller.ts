@@ -2,8 +2,8 @@ import { MovieInput, MovieQueryString } from '../interfaces/movies.interface';
 import { NextFunction, Request, Response } from 'express';
 import axios, { AxiosRequestConfig } from 'axios';
 
-import _ from 'lodash';
 import { apiKey } from '../env';
+import { assign } from 'lodash';
 import { baseUrl } from '../constants/url.constant';
 
 const getMovieId = (req: Request): string => {
@@ -12,8 +12,7 @@ const getMovieId = (req: Request): string => {
 
 const getMovieUrl = (id: string, urlSuffix?: string): string => {
   let url = `${baseUrl}/movie/${id}`;
-  url = urlSuffix ? `${url}/${urlSuffix}` : url;
-  return url;
+  return urlSuffix ? `${url}/${urlSuffix}` : url;
 }
 
 const getParams = (req: Request): MovieQueryString => {
@@ -22,9 +21,9 @@ const getParams = (req: Request): MovieQueryString => {
     api_key: apiKey,
     language: language ? language : 'en-US',
   };
-  params = append_to_response ? _.assign(params, { append_to_response }) : params;
-  params = page ? _.assign(params, { page }) : params;
-  params = region ? _.assign(params, { region }) : params;
+  params = append_to_response ? assign(params, { append_to_response }) : params;
+  params = page ? assign(params, { page }) : params;
+  params = region ? assign(params, { region }) : params;
   return params;
 }
 
