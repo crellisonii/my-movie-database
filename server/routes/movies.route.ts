@@ -1,4 +1,4 @@
-import { getMovieCredits, getMovieDetails, getMovieImages, getMovieRecommendations, getMovieReviews, getMovieSimilar, getMovieVideos } from '../controllers';
+import { getMovieCredits, getMovieDetails, getMovieImages, getMovieLatest, getMovieRecommendations, getMovieReviews, getMovieSimilar, getMovieVideos } from '../controllers';
 
 import { Router } from 'express';
 
@@ -19,3 +19,5 @@ router.get(`${idParams}/reviews`, getMovieReviews);
 router.get(`${idParams}/similar`, getMovieSimilar);
 
 router.get(`${idParams}/videos`, getMovieVideos);
+
+router.get('/latest', getMovieLatest);
