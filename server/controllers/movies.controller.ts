@@ -132,3 +132,16 @@ export const getMovieVideos = async (req: Request, res: Response, next: NextFunc
     throw new Error(e);
   }
 }
+
+export const getMovieLatest = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const url = `${baseUrl}movie/latest`;
+    const params = getParams(req);
+    const options = getOptions(params, url);
+    const resp = await axios(options);
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
