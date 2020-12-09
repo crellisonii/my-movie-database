@@ -5,39 +5,38 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { apiKey } from '../env';
 import { baseUrl } from '../constants/url.constant';
 
-const genresUrl = 'genre';
+const getUrl = (urlSuffix: string): string => {
+  return `${baseUrl}genre/${urlSuffix}`;
+}
 
-export const getMovieGenres = async (req: Request, res: Response, next: NextFunction) => {
+const getParams = (req: Request): GenresQueryString => {
   const { language }: GenresInput = req.query;
-  const url = `${baseUrl}${genresUrl}/movie/list`;
-  console.log('getMovieGenres url: ', url);
-  const params: GenresQueryString = {
+  return {
     api_key: apiKey,
     language: language ? language : 'en-US'
   };
-  console.log('getMovieGenres params: ', params);
-  const options: AxiosRequestConfig = {
+}
+
+const getOptions = (params: GenresQueryString, url: string): AxiosRequestConfig => {
+  return {
     method: 'GET',
     params,
     url
   };
-  console.log('getMovieGenres options: ', options);
+}
+
+export const getMovieGenres = async (req: Request, res: Response, next: NextFunction) => {
+  const url = getUrl('/movie/list');
+  const params = getParams(req);
+  const options = getOptions(params, url);
   const resp = await axios(options);
   res.json(resp.data);
 }
 
 export const getTVGenres = async (req: Request, res: Response, next: NextFunction) => {
-  const { language }: GenresInput = req.query;
-  const url = `${baseUrl}${genresUrl}/tv/list`;
-  const params: GenresQueryString = {
-    api_key: apiKey,
-    language: language ? language : 'en-US'
-  };
-  const options: AxiosRequestConfig = {
-    method: 'GET',
-    params,
-    url
-  };
+  const url = getUrl('/tv/list');
+  const params = getParams(req);
+  const options = getOptions(params, url);
   const resp = await axios(options);
   res.json(resp.data);
 }
