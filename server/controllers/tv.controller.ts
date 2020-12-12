@@ -91,3 +91,13 @@ export const getTVRecommendations = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getTVReviews = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/reviews');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
