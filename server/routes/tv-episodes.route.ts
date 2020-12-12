@@ -1,4 +1,4 @@
-import { getTvEpisodeCredits, getTvEpisodeDetails, getTvEpisodeExternalIds } from "../controllers";
+import { getTvEpisodeCredits, getTvEpisodeDetails, getTvEpisodeExternalIds, getTvEpisodeImages } from "../controllers";
 
 import { Router } from "express";
 
@@ -11,3 +11,5 @@ router.get(episode, getTvEpisodeDetails);
 router.get(`${episode}/credits`, getTvEpisodeCredits);
 
 router.get(`${episode}/external_ids`, getTvEpisodeExternalIds);
+
+router.get(`${episode}/images`, getTvEpisodeImages);
