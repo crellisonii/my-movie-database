@@ -8,12 +8,10 @@ import { baseUrl } from '../constants/url.constant';
 import { getTmdbData } from "../services";
 
 const getTvId = (req: Request): string => {
-  console.log('req.params: ', req.params);
   return req.params.tvId ? req.params.tvId : '';
 }
 
 const getSeasonId = (req: Request): string => {
-  console.log('getSeasonId: ', req.params.seasonId);
   return req.params.seasonId ? req.params.seasonId : '';
 }
 
@@ -49,9 +47,18 @@ const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise =>
 }
 
 export const getTvSeasonDetails = async (req: Request, res: Response) => {
-  console.log('getTvSeasonDetails called!!')
   try {
     const resp = await getData(req, 'GET');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getTvSeasonCredits = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/credits');
     res.json(resp.data);
   }
   catch (e) {
