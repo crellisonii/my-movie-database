@@ -1,4 +1,4 @@
-import { getTvSeasonAggregateCredits, getTvSeasonCredits, getTvSeasonDetails } from "../controllers";
+import { getTvSeasonAggregateCredits, getTvSeasonCredits, getTvSeasonDetails, getTvSeasonExternalIds } from "../controllers";
 
 import { Router } from "express";
 
@@ -11,3 +11,5 @@ router.get(season, getTvSeasonDetails);
 router.get(`${season}/aggregate_credits`, getTvSeasonAggregateCredits);
 
 router.get(`${season}/credits`, getTvSeasonCredits);
+
+router.get(`${season}/external_ids`, getTvSeasonExternalIds);
