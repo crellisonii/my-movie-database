@@ -1,10 +1,11 @@
+import { getTvSeasonCredits, getTvSeasonDetails } from "../controllers";
+
 import { Router } from "express";
-import { getTvSeasonDetails } from "../controllers";
 
 export const router = Router();
 
-const tvId = '/:tvId';
+const season = '/:tvId/season/:seasonId';
 
-const seasonId = '/:seasonId';
+router.get(season, getTvSeasonDetails);
 
-router.get(`${tvId}/season${seasonId}`, getTvSeasonDetails);
+router.get(`${season}/credits`, getTvSeasonCredits);
