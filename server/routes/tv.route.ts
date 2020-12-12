@@ -1,6 +1,7 @@
 import {
   getTVCredits,
   getTVDetails,
+  getTVEpisodeGroups,
   getTVExternalIds,
   getTVImages,
   getTVLatest,
@@ -20,6 +21,8 @@ const tvId = '/:tvId';
 router.get(tvId, getTVDetails);
 
 router.get(`${tvId}/credits`, getTVCredits);
+
+router.get(`${tvId}/episode_groups`, getTVEpisodeGroups);
 
 router.get(`${tvId}/external_ids`, getTVExternalIds);
 

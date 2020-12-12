@@ -62,6 +62,16 @@ export const getTVCredits = async (req: Request, res: Response) => {
   }
 }
 
+export const getTVEpisodeGroups = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/episode_groups');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
 export const getTVExternalIds = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/external_ids');
