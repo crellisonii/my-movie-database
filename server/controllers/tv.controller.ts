@@ -2,6 +2,7 @@ import { AxiosPromise, AxiosRequestConfig, Method } from "axios";
 import { Request, Response } from "express";
 import { TVInput, TVQueryString } from "../interfaces";
 
+import { RecordWithTtl } from "dns";
 import { apiKey } from "../env";
 import { assign } from 'lodash';
 import { baseUrl } from '../constants/url.constant';
@@ -95,6 +96,16 @@ export const getTVRecommendations = async (req: Request, res: Response) => {
 export const getTVReviews = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/reviews');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getTVSimilar = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/similar');
     res.json(resp.data);
   }
   catch (e) {
