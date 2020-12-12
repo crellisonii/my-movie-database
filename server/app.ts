@@ -4,7 +4,8 @@ import {
   genresRouter,
   movieRouter,
   peopleRouter,
-  reviewsRouter
+  reviewsRouter,
+  searchRouter
 } from "./routes";
 import { json, urlencoded } from 'body-parser';
 
@@ -24,3 +25,4 @@ app.use('/genre', genresRouter);
 app.use('/movie', movieRouter);
 app.use('/person', peopleRouter);
 app.use('/review', reviewsRouter);
+app.use('/search', searchRouter)
