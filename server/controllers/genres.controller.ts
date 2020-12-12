@@ -34,12 +34,12 @@ const getData = (req: Request, method: Method, pathParams: string): AxiosPromise
   return getTmdbData(options);
 }
 
-export const getMovieGenres = async (req: Request, res: Response) => {
+export const getGenresMovie = async (req: Request, res: Response) => {
   const resp = await getData(req, 'GET', '/movie/list');
   res.json(resp.data);
 }
 
-export const getTVGenres = async (req: Request, res: Response) => {
+export const getGenresTV = async (req: Request, res: Response) => {
   const resp = await getData(req, 'GET', '/tv/list');
   res.json(resp.data);
 }

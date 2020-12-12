@@ -1,9 +1,9 @@
-import { getMovieGenres, getTVGenres } from '../controllers';
+import { getGenresMovie, getGenresTV } from '../controllers';
 
 import { Router } from 'express';
 
 export const router = Router();
 
-router.get('/movie/list', getMovieGenres);
+router.get('/movie/list', getGenresMovie);
 
-router.get('/tv/list', getTVGenres);
+router.get('/tv/list', getGenresTV);
