@@ -9,6 +9,8 @@ export interface MovieInput {
 // Query String
 export interface MovieQueryString {
   api_key: string;
-  language: string;
+  language?: string;
   append_to_response?: string;
+  page?: number;
+  region?: string;
 }

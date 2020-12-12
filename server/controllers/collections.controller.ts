@@ -1,17 +1,17 @@
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { CollectionInput, CollectionQueryString } from '../interfaces';
 import { NextFunction, Request, Response } from 'express';
-import axios, { AxiosRequestConfig } from 'axios';
 
 import { apiKey } from '../env';
-import { baseUrl } from '../constants/url.constant';
+import { baseUrl } from '../constants';
+import { getTmdbData } from '../services';
 
-const getCollectionsId = (req: Request): string => {
+const getId = (req: Request): string => {
   return req.params.collectionId;
 }
 
-const getUrl = (id: string, urlSuffix?: string): string => {
-  let url = `${baseUrl}/collection/${id}`;
-  return urlSuffix ? `${url}/${urlSuffix}` : url;
+const getUrl = (id: string, pathParams: string): string => {
+  return `${baseUrl}/collection/${id}${pathParams}`;
 }
 
 const getParams = (req: Request): CollectionQueryString => {
@@ -30,26 +30,30 @@ const getOptions = (params: CollectionQueryString, url: string): AxiosRequestCon
   };
 }
 
+const getData = (req: Request, pathParams = ''): AxiosPromise<any> => {
+  const id = getId(req);
+  const url = getUrl(id, pathParams);
+  const params = getParams(req);
+  const options = getOptions(params, url);
+  return getTmdbData(options);
+}
+
 export const getCollectionsDetails = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getCollectionsId(req);
-    const url = getUrl(id);
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '');
     res.json(resp.data);
   }
   catch (e) {
-    // console.log('getCollection error: \n', e);
     throw new Error(e);
   }
 }
 
 export const getCollectionsImages = async (req: Request, res: Response, next: NextFunction) => {
-  const id = getCollectionsId(req);
-  const url = getUrl(id, 'images');
-  const params = getParams(req);
-  const options = getOptions(params, url);
-  const resp = await axios(options);
-  res.json(resp.data);
+  try {
+    const resp = await getData(req, '/images');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
 }

@@ -4,6 +4,8 @@ import { Router } from 'express';
 
 export const router = Router();
 
-router.get('/:collectionId', getCollectionsDetails);
+const collectionId = '/:collectionId';
 
-router.get('/:collectionId/images', getCollectionsImages);
+router.get(collectionId, getCollectionsDetails);
+
+router.get(`${collectionId}/images`, getCollectionsImages);
