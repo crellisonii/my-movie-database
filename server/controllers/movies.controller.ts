@@ -1,4 +1,4 @@
-import { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
 import { MovieInput, MovieQueryString } from '../interfaces/movies.interface';
 import { NextFunction, Request, Response } from 'express';
 
@@ -28,25 +28,25 @@ const getParams = (req: Request): MovieQueryString => {
   return params;
 }
 
-const getOptions = (params: MovieQueryString, url: string): AxiosRequestConfig => {
+const getOptions = (params: MovieQueryString, url: string, method: Method): AxiosRequestConfig => {
   return {
-    method: 'GET',
+    method,
     params,
     url
   }
 }
 
-const getData = (req: Request, pathParams = ''): AxiosPromise => {
+const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise => {
   const id = getId(req);
   const url = getUrl(id, pathParams);
   const params = getParams(req);
-  const options = getOptions(params, url);
+  const options = getOptions(params, url, method);
   return getTmdbData(options);
 }
 
 export const getMovieDetails = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req);
+    const resp = await getData(req, 'GET');
     res.json(resp.data);
   }
   catch (e) {
@@ -56,7 +56,7 @@ export const getMovieDetails = async (req: Request, res: Response, next: NextFun
 
 export const getMovieCredits = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/credits');
+    const resp = await getData(req, 'GET', '/credits');
     res.json(resp.data);
   }
   catch (e) {
@@ -66,7 +66,7 @@ export const getMovieCredits = async (req: Request, res: Response, next: NextFun
 
 export const getMovieExternalIds = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/external_ids');
+    const resp = await getData(req, 'GET', '/external_ids');
     res.json(resp.data);
   }
   catch (e) {
@@ -76,7 +76,7 @@ export const getMovieExternalIds = async (req: Request, res: Response, next: Nex
 
 export const getMovieImages = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/images');
+    const resp = await getData(req, 'GET', '/images');
     res.json(resp.data);
   }
   catch (e) {
@@ -86,7 +86,7 @@ export const getMovieImages = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieRecommendations = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/recommendations');
+    const resp = await getData(req, 'GET', '/recommendations');
     res.json(resp.data);
   }
   catch (e) {
@@ -96,7 +96,7 @@ export const getMovieRecommendations = async (req: Request, res: Response, next:
 
 export const getMovieReviews = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/reviews');
+    const resp = await getData(req, 'GET', '/reviews');
     res.json(resp.data);
   }
   catch (e) {
@@ -106,7 +106,7 @@ export const getMovieReviews = async (req: Request, res: Response, next: NextFun
 
 export const getMovieSimilar = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/similar');
+    const resp = await getData(req, 'GET', '/similar');
     res.json(resp.data);
   }
   catch (e) {
@@ -116,7 +116,7 @@ export const getMovieSimilar = async (req: Request, res: Response, next: NextFun
 
 export const getMovieVideos = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/videos');
+    const resp = await getData(req, 'GET', '/videos');
     res.json(resp.data);
   }
   catch (e) {
@@ -126,7 +126,7 @@ export const getMovieVideos = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieLatest = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/latest');
+    const resp = await getData(req, 'GET', '/latest');
     res.json(resp.data);
   }
   catch (e) {
@@ -136,7 +136,7 @@ export const getMovieLatest = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieNowPlaying = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/now_playing');
+    const resp = await getData(req, 'GET', '/now_playing');
     res.json(resp.data);
   }
   catch (e) {
@@ -146,7 +146,7 @@ export const getMovieNowPlaying = async (req: Request, res: Response, next: Next
 
 export const getMoviePopular = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/popular');
+    const resp = await getData(req, 'GET', '/popular');
     res.json(resp.data);
   }
   catch (e) {
@@ -156,7 +156,7 @@ export const getMoviePopular = async (req: Request, res: Response, next: NextFun
 
 export const getMovieTopRated = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/top_rated');
+    const resp = await getData(req, 'GET', '/top_rated');
     res.json(resp.data);
   }
   catch (e) {
@@ -166,7 +166,7 @@ export const getMovieTopRated = async (req: Request, res: Response, next: NextFu
 
 export const getMovieUpcoming = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/upcoming');
+    const resp = await getData(req, 'GET', '/upcoming');
     res.json(resp.data);
   }
   catch (e) {

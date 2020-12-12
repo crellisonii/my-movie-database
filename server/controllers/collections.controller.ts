@@ -1,4 +1,4 @@
-import { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
 import { CollectionInput, CollectionQueryString } from '../interfaces';
 import { NextFunction, Request, Response } from 'express';
 
@@ -22,25 +22,25 @@ const getParams = (req: Request): CollectionQueryString => {
   };
 }
 
-const getOptions = (params: CollectionQueryString, url: string): AxiosRequestConfig => {
+const getOptions = (params: CollectionQueryString, url: string, method: Method): AxiosRequestConfig => {
   return {
-    method: 'GET',
+    method,
     params,
     url
   };
 }
 
-const getData = (req: Request, pathParams = ''): AxiosPromise<any> => {
+const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise<any> => {
   const id = getId(req);
   const url = getUrl(id, pathParams);
   const params = getParams(req);
-  const options = getOptions(params, url);
+  const options = getOptions(params, url, method);
   return getTmdbData(options);
 }
 
 export const getCollectionsDetails = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '');
+    const resp = await getData(req, 'GET');
     res.json(resp.data);
   }
   catch (e) {
@@ -50,7 +50,7 @@ export const getCollectionsDetails = async (req: Request, res: Response, next: N
 
 export const getCollectionsImages = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const resp = await getData(req, '/images');
+    const resp = await getData(req, 'GET', '/images');
     res.json(resp.data);
   }
   catch (e) {
