@@ -19,3 +19,5 @@ router.get(`${tvId}/recommendations`, getTVRecommendations);
 router.get(`${tvId}/reviews`, getTVReviews);
 
 router.get(`${tvId}/similar`, getTVSimilar);
+
+router.get(`${tvId}/videos`);
