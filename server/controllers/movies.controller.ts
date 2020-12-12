@@ -1,16 +1,17 @@
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { MovieInput, MovieQueryString } from '../interfaces/movies.interface';
 import { NextFunction, Request, Response } from 'express';
-import axios, { AxiosRequestConfig } from 'axios';
 
 import { apiKey } from '../env';
 import { assign } from 'lodash';
-import { baseUrl } from '../constants/url.constant';
+import { baseUrl } from '../constants';
+import { getTmdbData } from '../services';
 
-const getMovieId = (req: Request): string => {
-  return req.params.movieId;
+const getId = (req: Request): string => {
+  return req.params.movieId ? req.params.movieId : '';
 }
 
-const getMovieUrl = (id: string, urlSuffix?: string): string => {
+const getUrl = (id: string, urlSuffix?: string): string => {
   let url = `${baseUrl}/movie/${id}`;
   return urlSuffix ? `${url}/${urlSuffix}` : url;
 }
@@ -19,8 +20,8 @@ const getParams = (req: Request): MovieQueryString => {
   const { append_to_response, language, page, region }: MovieInput = req.query;
   let params = {
     api_key: apiKey,
-    language: language ? language : 'en-US',
   };
+  params = language ? assign(params, { language: language ? language : 'en-US' }) : params;
   params = append_to_response ? assign(params, { append_to_response }) : params;
   params = page ? assign(params, { page }) : params;
   params = region ? assign(params, { region }) : params;
@@ -35,13 +36,17 @@ const getOptions = (params: MovieQueryString, url: string): AxiosRequestConfig =
   }
 }
 
+const getData = (req: Request, pathParams = ''): AxiosPromise => {
+  const id = getId(req);
+  const url = getUrl(id, pathParams);
+  const params = getParams(req);
+  const options = getOptions(params, url);
+  return getTmdbData(options);
+}
+
 export const getMovieDetails = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id);
-    let params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req);
     res.json(resp.data);
   }
   catch (e) {
@@ -51,11 +56,17 @@ export const getMovieDetails = async (req: Request, res: Response, next: NextFun
 
 export const getMovieCredits = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id, 'credits');
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/credits');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getMovieExternalIds = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const resp = await getData(req, '/external_ids');
     res.json(resp.data);
   }
   catch (e) {
@@ -65,11 +76,7 @@ export const getMovieCredits = async (req: Request, res: Response, next: NextFun
 
 export const getMovieImages = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id, 'images');
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/images');
     res.json(resp.data);
   }
   catch (e) {
@@ -79,11 +86,7 @@ export const getMovieImages = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieRecommendations = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id, 'recommendations');
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/recommendations');
     res.json(resp.data);
   }
   catch (e) {
@@ -93,11 +96,7 @@ export const getMovieRecommendations = async (req: Request, res: Response, next:
 
 export const getMovieReviews = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id, 'reviews');
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/reviews');
     res.json(resp.data);
   }
   catch (e) {
@@ -107,11 +106,7 @@ export const getMovieReviews = async (req: Request, res: Response, next: NextFun
 
 export const getMovieSimilar = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id, 'similar');
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/similar');
     res.json(resp.data);
   }
   catch (e) {
@@ -121,11 +116,7 @@ export const getMovieSimilar = async (req: Request, res: Response, next: NextFun
 
 export const getMovieVideos = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = getMovieId(req);
-    const url = getMovieUrl(id, 'videos');
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/videos');
     res.json(resp.data);
   }
   catch (e) {
@@ -135,10 +126,7 @@ export const getMovieVideos = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieLatest = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}/movie/latest`;
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/latest');
     res.json(resp.data);
   }
   catch (e) {
@@ -148,10 +136,7 @@ export const getMovieLatest = async (req: Request, res: Response, next: NextFunc
 
 export const getMovieNowPlaying = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}/movie/now_playing`;
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/now_playing');
     res.json(resp.data);
   }
   catch (e) {
@@ -161,10 +146,7 @@ export const getMovieNowPlaying = async (req: Request, res: Response, next: Next
 
 export const getMoviePopular = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}/movie/popular`;
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/popular');
     res.json(resp.data);
   }
   catch (e) {
@@ -174,10 +156,7 @@ export const getMoviePopular = async (req: Request, res: Response, next: NextFun
 
 export const getMovieTopRated = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}/movie/top_rated`;
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/top_rated');
     res.json(resp.data);
   }
   catch (e) {
@@ -187,10 +166,7 @@ export const getMovieTopRated = async (req: Request, res: Response, next: NextFu
 
 export const getMovieUpcoming = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const url = `${baseUrl}/movie/top_rated`;
-    const params = getParams(req);
-    const options = getOptions(params, url);
-    const resp = await axios(options);
+    const resp = await getData(req, '/upcoming');
     res.json(resp.data);
   }
   catch (e) {
