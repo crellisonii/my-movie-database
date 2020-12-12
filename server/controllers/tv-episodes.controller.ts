@@ -11,16 +11,16 @@ const getTvId = (req: Request): string => {
   return req.params.tvId ? req.params.tvId : '';
 }
 
-const getSeasonId = (req: Request): string => {
-  return req.params.seasonId ? req.params.seasonId : '';
+const getSeasonNumber = (req: Request): string => {
+  return req.params.seasonNumber ? req.params.seasonNumber : '';
 }
 
-const getEpisodeId = (req: Request): string => {
-  return req.params.episodeId ? req.params.episodeId : '';
+const getEpisodeNumber = (req: Request): string => {
+  return req.params.episodeNumber ? req.params.episodeNumber : '';
 }
 
-const getUrl = (tvId: string, seasonId: string, episodeId: string, pathParams: string): string => {
-  return `${baseUrl}/tv/${tvId}/season/${seasonId}/episode/${episodeId}${pathParams}`;
+const getUrl = (tvId: string, seasonNumber: string, episodeNumber: string, pathParams: string): string => {
+  return `${baseUrl}/tv/${tvId}/season/${seasonNumber}/episode/${episodeNumber}${pathParams}`;
 }
 
 const getParams = (req: Request): TvEpisodeQueryString => {
@@ -43,11 +43,11 @@ const getOptions = (params: TvEpisodeQueryString, url: string, method: Method): 
 
 const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise => {
   const tvId = getTvId(req);
-  const seasonId = getSeasonId(req);
-  const episodeId = getEpisodeId(req);
-  const url = getUrl(tvId, seasonId, episodeId, pathParams);
+  const seasonNumber = getSeasonNumber(req);
+  const episodeNumber = getEpisodeNumber(req);
+  const url = getUrl(tvId, seasonNumber, episodeNumber, pathParams);
   const params = getParams(req);
-  const options = getOptions(params, url, 'GET');
+  const options = getOptions(params, url, method);
   return getTmdbData(options);
 }
 
@@ -84,6 +84,16 @@ export const getTvEpisodeExternalIds = async (req: Request, res: Response) => {
 export const getTvEpisodeImages = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/images');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getTvEpisodeVideos = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/videos');
     res.json(resp.data);
   }
   catch (e) {

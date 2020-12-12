@@ -11,12 +11,12 @@ const getTvId = (req: Request): string => {
   return req.params.tvId ? req.params.tvId : '';
 }
 
-const getSeasonId = (req: Request): string => {
-  return req.params.seasonId ? req.params.seasonId : '';
+const getSeasonNumber = (req: Request): string => {
+  return req.params.seasonNumber ? req.params.seasonNumber : '';
 }
 
-const getUrl = (tvId: string, seasonId: string, pathParams: string): string => {
-  return `${baseUrl}/tv/${tvId}/season/${seasonId}${pathParams}`;
+const getUrl = (tvId: string, seasonNumber: string, pathParams: string): string => {
+  return `${baseUrl}/tv/${tvId}/season/${seasonNumber}${pathParams}`;
 }
 
 const getParams = (req: Request): TvSeasonQueryString => {
@@ -39,8 +39,8 @@ const getOptions = (params: TvSeasonQueryString, url: string, method: Method): A
 
 const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise => {
   const tvId = getTvId(req);
-  const seasonId = getSeasonId(req);
-  const url = getUrl(tvId, seasonId, pathParams);
+  const seasonNumber = getSeasonNumber(req);
+  const url = getUrl(tvId, seasonNumber, pathParams);
   const params = getParams(req);
   const options = getOptions(params, url, method);
   return getTmdbData(options);
