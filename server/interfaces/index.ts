@@ -7,3 +7,4 @@ export * from './reviews.interface';
 export * from './search.interface';
 export * from './tv.interface';
 export * from './tv-season.interface';
+export * from './tv-episodes.interface';
