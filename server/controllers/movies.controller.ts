@@ -11,9 +11,8 @@ const getId = (req: Request): string => {
   return req.params.movieId ? req.params.movieId : '';
 }
 
-const getUrl = (id: string, urlSuffix?: string): string => {
-  let url = `${baseUrl}/movie/${id}`;
-  return urlSuffix ? `${url}/${urlSuffix}` : url;
+const getUrl = (id: string, pathParams: string): string => {
+  return `${baseUrl}/movie/${id}${pathParams}`;
 }
 
 const getParams = (req: Request): MovieQueryString => {

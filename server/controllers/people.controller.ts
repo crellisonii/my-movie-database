@@ -11,9 +11,8 @@ const getId = (req: Request): string => {
   return req.params.personId ? req.params.personId : '';
 }
 
-const getUrl = (id: string, urlSuffix?: string): string => {
-  let url = `${baseUrl}/person/${id}`;
-  return urlSuffix ? `${url}${urlSuffix}` : url;
+const getUrl = (id: string, pathParams: string): string => {
+  return `${baseUrl}/person/${id}${pathParams}`;
 }
 
 const getParams = (req: Request): PeopleQueryString => {

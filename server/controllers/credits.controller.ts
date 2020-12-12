@@ -28,7 +28,7 @@ const getOptions = (params: CreditsQueryString, url: string, method: Method): Ax
   };
 }
 
-const getData = (req: Request, method: Method): AxiosPromise<any> => {
+const getData = (req: Request, method: Method): AxiosPromise => {
   const id = getId(req);
   const url = getUrl(id);
   const params = getParams(req);
