@@ -71,3 +71,13 @@ export const getSearchMovies = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getSearchMulti = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/multi');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
