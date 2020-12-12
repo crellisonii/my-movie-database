@@ -61,3 +61,13 @@ export const getTVCredits = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getTVExternalIds = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/external_ids');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
