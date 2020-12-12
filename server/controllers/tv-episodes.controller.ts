@@ -80,3 +80,13 @@ export const getTvEpisodeExternalIds = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getTvEpisodeImages = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/images');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
