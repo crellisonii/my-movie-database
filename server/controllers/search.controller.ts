@@ -26,7 +26,6 @@ const getParams = (req: Request): SearchQueryString => {
     api_key: apiKey,
     query: query ? query : ''
   };
-  console.log('getParams query: ', query);
   params = first_air_date_year ? assign(params, { first_air_date_year }) : params;
   params = include_adult ? assign(params, { include_adult }) : params;
   params = language ? assign(params, { language }) : params;
@@ -85,6 +84,16 @@ export const getSearchMulti = async (req: Request, res: Response) => {
 export const getSearchPerson = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/person');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getSearchTV = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/tv');
     res.json(resp.data);
   }
   catch (e) {
