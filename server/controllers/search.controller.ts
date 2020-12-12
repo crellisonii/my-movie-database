@@ -52,9 +52,19 @@ const getData = (req: Request, method: Method, pathParams: string): AxiosPromise
   return getTmdbData(options);
 }
 
-export const getSearchCollections = async (req: Request, res: Response, next: NextFunction) => {
+export const getSearchCollections = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/collection');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getSearchMovies = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/movie');
     res.json(resp.data);
   }
   catch (e) {
