@@ -3,11 +3,13 @@ import { router as creditsRouter } from './credits.route';
 import { router as genresRouter } from './genres.route';
 import { router as movieRouter } from './movies.route';
 import { router as peopleRouter } from './people.route';
+import { router as reviewsRouter } from './reviews.route';
 
 export {
   collectionRouter,
   creditsRouter,
   genresRouter,
   movieRouter,
-  peopleRouter
+  peopleRouter,
+  reviewsRouter
 }
