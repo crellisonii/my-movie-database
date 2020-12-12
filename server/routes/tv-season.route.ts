@@ -11,7 +11,7 @@ import { Router } from "express";
 
 export const router = Router();
 
-const season = '/:tvId/season/:seasonId';
+const season = '/:tvId/season/:seasonNumber';
 
 router.get(season, getTvSeasonDetails);
 
