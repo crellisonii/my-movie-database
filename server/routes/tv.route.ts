@@ -1,4 +1,4 @@
-import { getTVCredits, getTVDetails, getTVExternalIds, getTVImages, getTVRecommendations, getTVReviews } from "../controllers";
+import { getTVCredits, getTVDetails, getTVExternalIds, getTVImages, getTVRecommendations, getTVReviews, getTVSimilar } from "../controllers";
 
 import { Router } from "express";
 
@@ -17,3 +17,5 @@ router.get(`${tvId}/images`, getTVImages);
 router.get(`${tvId}/recommendations`, getTVRecommendations);
 
 router.get(`${tvId}/reviews`, getTVReviews);
+
+router.get(`${tvId}/similar`, getTVSimilar);
