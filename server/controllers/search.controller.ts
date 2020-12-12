@@ -1,5 +1,5 @@
 import { AxiosPromise, AxiosRequestConfig, Method } from "axios";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { SearchInput, SearchQueryString } from "../interfaces";
 
 import { apiKey } from '../env';

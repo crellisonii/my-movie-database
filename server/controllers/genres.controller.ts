@@ -1,6 +1,6 @@
 import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
 import { GenresInput, GenresQueryString } from '../interfaces/genres.interface';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 import { apiKey } from '../env';
 import { baseUrl } from '../constants/url.constant';
@@ -34,12 +34,12 @@ const getData = (req: Request, method: Method, pathParams: string): AxiosPromise
   return getTmdbData(options);
 }
 
-export const getMovieGenres = async (req: Request, res: Response, next: NextFunction) => {
+export const getMovieGenres = async (req: Request, res: Response) => {
   const resp = await getData(req, 'GET', '/movie/list');
   res.json(resp.data);
 }
 
-export const getTVGenres = async (req: Request, res: Response, next: NextFunction) => {
+export const getTVGenres = async (req: Request, res: Response) => {
   const resp = await getData(req, 'GET', '/tv/list');
   res.json(resp.data);
 }

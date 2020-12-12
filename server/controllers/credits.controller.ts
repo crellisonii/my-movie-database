@@ -1,5 +1,5 @@
 import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 import { CreditsQueryString } from '../interfaces/credits.interface';
 import { apiKey } from '../env';
@@ -36,7 +36,7 @@ const getData = (req: Request, method: Method): AxiosPromise<any> => {
   return getTmdbData(options);
 }
 
-export const getCredits = async (req: Request, res: Response, next: NextFunction) => {
+export const getCredits = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET');
     res.json(resp.data);

@@ -1,6 +1,6 @@
 import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
-import { NextFunction, Request, Response } from "express";
 import { PeopleInput, PeopleQueryString } from "../interfaces/people.interface";
+import { Request, Response } from "express";
 
 import { apiKey } from '../env';
 import { assign } from 'lodash'
@@ -43,7 +43,7 @@ const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise =>
   return getTmdbData(options);
 }
 
-export const getPersonDetails = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonDetails = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET');
     res.json(resp.data);
@@ -53,7 +53,7 @@ export const getPersonDetails = async (req: Request, res: Response, next: NextFu
   }
 }
 
-export const getPersonMovieCredits = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonMovieCredits = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/movie_credits');
     res.json(resp.data);
@@ -63,7 +63,7 @@ export const getPersonMovieCredits = async (req: Request, res: Response, next: N
   }
 }
 
-export const getPersonTvCredits = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonTvCredits = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/tv_credits');
     res.json(resp.data);
@@ -73,7 +73,7 @@ export const getPersonTvCredits = async (req: Request, res: Response, next: Next
   }
 }
 
-export const getPersonCombinedCredits = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonCombinedCredits = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/combined_credits');
     res.json(resp.data);
@@ -83,7 +83,7 @@ export const getPersonCombinedCredits = async (req: Request, res: Response, next
   }
 }
 
-export const getPersonExternalIds = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonExternalIds = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/external_ids');
     res.json(resp.data);
@@ -93,7 +93,7 @@ export const getPersonExternalIds = async (req: Request, res: Response, next: Ne
   }
 }
 
-export const getPersonImages = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonImages = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/images');
     res.json(resp.data);
@@ -103,7 +103,7 @@ export const getPersonImages = async (req: Request, res: Response, next: NextFun
   }
 }
 
-export const getPersonTaggedImages = async (req: Request, res: Response, next: NextFunction) => {
+export const getPersonTaggedImages = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/tagged_images');
     res.json(resp.data);

@@ -1,6 +1,6 @@
 import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
 import { CollectionInput, CollectionQueryString } from '../interfaces';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 import { apiKey } from '../env';
 import { baseUrl } from '../constants';
@@ -38,7 +38,7 @@ const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise<an
   return getTmdbData(options);
 }
 
-export const getCollectionsDetails = async (req: Request, res: Response, next: NextFunction) => {
+export const getCollectionsDetails = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET');
     res.json(resp.data);
@@ -48,7 +48,7 @@ export const getCollectionsDetails = async (req: Request, res: Response, next: N
   }
 }
 
-export const getCollectionsImages = async (req: Request, res: Response, next: NextFunction) => {
+export const getCollectionsImages = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/images');
     res.json(resp.data);
