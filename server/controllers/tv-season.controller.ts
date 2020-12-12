@@ -95,3 +95,13 @@ export const getTvSeasonImages = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getTvSeasonVideos = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/videos');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
