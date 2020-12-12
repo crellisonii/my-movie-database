@@ -1,8 +1,11 @@
+import { getTVCredits, getTVDetails } from "../controllers";
+
 import { Router } from "express";
-import { getTVDetails } from "../controllers";
 
 export const router = Router();
 
 const tvId = '/:tvId';
 
 router.get(tvId, getTVDetails);
+
+router.get(`${tvId}/credits`, getTVCredits);
