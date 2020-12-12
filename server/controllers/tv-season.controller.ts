@@ -56,6 +56,16 @@ export const getTvSeasonDetails = async (req: Request, res: Response) => {
   }
 }
 
+export const getTvSeasonAggregateCredits = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/aggregate_credits');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
 export const getTvSeasonCredits = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET', '/credits');
