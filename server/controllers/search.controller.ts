@@ -81,3 +81,13 @@ export const getSearchMulti = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getSearchPerson = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/person');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
