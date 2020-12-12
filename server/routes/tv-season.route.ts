@@ -1,4 +1,11 @@
-import { getTvSeasonAggregateCredits, getTvSeasonCredits, getTvSeasonDetails, getTvSeasonExternalIds, getTvSeasonImages, getTvSeasonVideos } from "../controllers";
+import {
+  getTvSeasonAggregateCredits,
+  getTvSeasonCredits,
+  getTvSeasonDetails,
+  getTvSeasonExternalIds,
+  getTvSeasonImages,
+  getTvSeasonVideos
+} from "../controllers";
 
 import { Router } from "express";
 
