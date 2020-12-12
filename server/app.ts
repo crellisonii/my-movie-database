@@ -6,6 +6,7 @@ import {
   peopleRouter,
   reviewsRouter,
   searchRouter,
+  tvEpisodeRouter,
   tvRouter,
   tvSeasonRouter
 } from "./routes";
@@ -39,3 +40,5 @@ app.use('/search', searchRouter);
 app.use('/tv', tvRouter);
 
 app.use('/tv-season', tvSeasonRouter);
+
+app.use('/tv-episode', tvEpisodeRouter);

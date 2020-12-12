@@ -5,6 +5,7 @@ import { router as movieRouter } from './movies.route';
 import { router as peopleRouter } from './people.route';
 import { router as reviewsRouter } from './reviews.route';
 import { router as searchRouter } from './search.route';
+import { router as tvEpisodeRouter } from './tv-episodes.route';
 import { router as tvRouter } from './tv.route';
 import { router as tvSeasonRouter } from './tv-season.route';
 
@@ -17,5 +18,6 @@ export {
   reviewsRouter,
   searchRouter,
   tvRouter,
-  tvSeasonRouter
+  tvSeasonRouter,
+  tvEpisodeRouter
 }
