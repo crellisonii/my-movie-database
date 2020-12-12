@@ -5,3 +5,4 @@ export * from './movies.controller';
 export * from './people.controller';
 export * from './reviews.controller';
 export * from './search.controller';
+export * from './tv.controller';
