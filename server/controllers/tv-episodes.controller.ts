@@ -60,3 +60,13 @@ export const getTvEpisodeDetails = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getTvEpisodeCredits = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/credits');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
