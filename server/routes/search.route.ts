@@ -1,4 +1,10 @@
-import { getSearchCollections, getSearchMovies, getSearchMulti, getSearchPerson } from '../controllers';
+import {
+  getSearchCollections,
+  getSearchMovies,
+  getSearchMulti,
+  getSearchPerson,
+  getSearchTV
+} from '../controllers';
 
 import { Router } from 'express';
 
@@ -8,3 +14,4 @@ router.get('/collection', getSearchCollections);
 router.get('/movie', getSearchMovies);
 router.get('/multi', getSearchMulti);
 router.get('/person', getSearchPerson);
+router.get('/tv', getSearchTV);
