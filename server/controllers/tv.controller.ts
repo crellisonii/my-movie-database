@@ -131,3 +131,23 @@ export const getTVLatest = async (req: Request, res: Response) => {
     throw new Error(e);
   }
 }
+
+export const getTVPopular = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/popular');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getTVTopRated = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/top_rated');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
