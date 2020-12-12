@@ -4,6 +4,7 @@ import { router as genresRouter } from './genres.route';
 import { router as movieRouter } from './movies.route';
 import { router as peopleRouter } from './people.route';
 import { router as reviewsRouter } from './reviews.route';
+import { router as searchRouter } from './search.route';
 
 export {
   collectionRouter,
@@ -11,5 +12,6 @@ export {
   genresRouter,
   movieRouter,
   peopleRouter,
-  reviewsRouter
+  reviewsRouter,
+  searchRouter
 }
