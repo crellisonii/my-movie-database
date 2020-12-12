@@ -8,3 +8,4 @@ export * from './search.controller';
 export * from './tv.controller';
 export * from './tv-season.controller';
 export * from './tv-episodes.controller';
+export * from './tv-episode-groups.controller';
