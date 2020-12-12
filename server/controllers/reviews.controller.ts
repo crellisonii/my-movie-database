@@ -7,7 +7,7 @@ import { baseUrl } from "../constants";
 import { getTmdbData } from "../services";
 
 const getId = (req: Request): string => {
-  return req.params.reviewsId;
+  return req.params.reviewsId ? req.params.reviewsId : '';
 }
 
 const getUrl = (id: string): string => {

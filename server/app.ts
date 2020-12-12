@@ -18,13 +18,21 @@ export const app = express();
 app.use(morgan('dev'));
 
 app.use(urlencoded({ extended: false }));
+
 app.use(json());
 
 app.use('/collection', collectionRouter);
+
 app.use('/credit', creditsRouter);
+
 app.use('/genre', genresRouter);
+
 app.use('/movie', movieRouter);
+
 app.use('/person', peopleRouter);
+
 app.use('/review', reviewsRouter);
+
 app.use('/search', searchRouter);
+
 app.use('/tv', tvRouter);

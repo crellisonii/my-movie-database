@@ -8,7 +8,7 @@ import { baseUrl } from '../constants/url.constant';
 import { getTmdbData } from "../services";
 
 const getId = (req: Request): string => {
-  return req.params.personId;
+  return req.params.personId ? req.params.personId : '';
 }
 
 const getUrl = (id: string, urlSuffix?: string): string => {

@@ -7,7 +7,7 @@ import { baseUrl } from '../constants';
 import { getTmdbData } from '../services';
 
 const getId = (req: Request): string => {
-  return req.params.collectionId;
+  return req.params.collectionId ? req.params.collectionId : '';
 }
 
 const getUrl = (id: string, pathParams: string): string => {
