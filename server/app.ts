@@ -6,7 +6,8 @@ import {
   peopleRouter,
   reviewsRouter,
   searchRouter,
-  tvRouter
+  tvRouter,
+  tvSeasonRouter
 } from "./routes";
 import { json, urlencoded } from 'body-parser';
 
@@ -36,3 +37,5 @@ app.use('/review', reviewsRouter);
 app.use('/search', searchRouter);
 
 app.use('/tv', tvRouter);
+
+app.use('/tv-season', tvSeasonRouter);
