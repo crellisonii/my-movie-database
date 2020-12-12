@@ -8,7 +8,7 @@ import { baseUrl } from '../constants/url.constant';
 import { getTmdbData } from "../services";
 
 const getId = (req: Request): string => {
-  return req.params.tvId;
+  return req.params.tvId ? req.params.tvId : '';
 }
 
 const getUrl = (id: string, pathParams: string): string => {
@@ -45,6 +45,16 @@ const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise =>
 export const getTVDetails = async (req: Request, res: Response) => {
   try {
     const resp = await getData(req, 'GET');
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
+}
+
+export const getTVCredits = async (req: Request, res: Response) => {
+  try {
+    const resp = await getData(req, 'GET', '/credits');
     res.json(resp.data);
   }
   catch (e) {
