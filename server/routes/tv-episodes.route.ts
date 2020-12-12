@@ -1,4 +1,4 @@
-import { getTvEpisodeCredits, getTvEpisodeDetails } from "../controllers";
+import { getTvEpisodeCredits, getTvEpisodeDetails, getTvEpisodeExternalIds } from "../controllers";
 
 import { Router } from "express";
 
@@ -9,3 +9,5 @@ const episode = `:tvId/season/:seasonId/episode/:episodeId`;
 router.get(episode, getTvEpisodeDetails);
 
 router.get(`${episode}/credits`, getTvEpisodeCredits);
+
+router.get(`${episode}/external_ids`, getTvEpisodeExternalIds);
