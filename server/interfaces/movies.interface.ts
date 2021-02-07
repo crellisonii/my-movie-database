@@ -7,10 +7,10 @@ export interface MovieInput {
 }
 
 // Query String
-export interface MovieQueryString {
+export interface MovieParams {
   api_key: string;
-  language?: string;
   append_to_response?: string;
+  language?: string;
   page?: number;
   region?: string;
 }

@@ -1,5 +1,4 @@
-// Input Interface
-export class SearchInput {
+export interface SearchInput {
   first_air_date_year?: number;
   include_adult?: boolean;
   language?: string;
@@ -10,8 +9,7 @@ export class SearchInput {
   year?: number;
 }
 
-// Query params Interface
-export class SearchQueryString {
+export interface SearchParams {
   api_key: string;
   first_air_date_year?: number;
   include_adult?: boolean;

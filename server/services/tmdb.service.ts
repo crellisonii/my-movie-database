@@ -1,5 +1,13 @@
-import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export const getTmdbData = (options: AxiosRequestConfig): AxiosPromise<any> => {
-  return axios(options);
+import { Response } from 'express';
+
+export const getTmdbData = async (res: Response, options: AxiosRequestConfig) => {
+  try {
+    const resp = await axios(options);
+    res.json(resp.data);
+  }
+  catch (e) {
+    throw new Error(e);
+  }
 }

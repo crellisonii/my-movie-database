@@ -1,163 +1,64 @@
-import { AxiosPromise, AxiosRequestConfig, Method } from "axios";
 import { Request, Response } from "express";
-import { TVInput, TVQueryString } from "../interfaces";
 
-import { apiKey } from "../env";
-import { assign } from 'lodash';
-import { baseUrl } from '../constants/url.constant';
 import { getTmdbData } from "../services";
+import { getTvOptions } from "../helpers";
 
-const getId = (req: Request): string => {
-  return req.params.tvId ? req.params.tvId : '';
+export const getTVDetails = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET');
+  getTmdbData(res, options);
 }
 
-const getUrl = (id: string, pathParams: string): string => {
-  return `${baseUrl}/tv/${id}${pathParams}`;
+export const getTVCredits = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/credits');
+  getTmdbData(res, options);
 }
 
-const getParams = (req: Request): TVQueryString => {
-  const { append_to_response, language, page }: TVInput = req.query;
-  let params = {
-    api_key: apiKey,
-    language: language ? language : 'en-US'
-  };
-  params = append_to_response ? assign(params, { append_to_response }) : params;
-  params = page ? assign(params, { page }) : params;
-  return params;
+export const getTVEpisodeGroups = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/episode_groups');
+  getTmdbData(res, options);
 }
 
-const getOptions = (params: TVQueryString, url: string, method: Method): AxiosRequestConfig => {
-  return {
-    method,
-    params,
-    url
-  };
+export const getTVExternalIds = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/external_ids');
+  getTmdbData(res, options);
 }
 
-const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise => {
-  const id = getId(req);
-  const url = getUrl(id, pathParams);
-  const params = getParams(req);
-  const options = getOptions(params, url, method);
-  return getTmdbData(options);
+export const getTVImages = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/images');
+  getTmdbData(res, options);
 }
 
-export const getTVDetails = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVRecommendations = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/recommendations');
+  getTmdbData(res, options);
 }
 
-export const getTVCredits = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/credits');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVReviews = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/reviews');
+  getTmdbData(res, options);
 }
 
-export const getTVEpisodeGroups = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/episode_groups');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVSimilar = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/similar');
+  getTmdbData(res, options);
 }
 
-export const getTVExternalIds = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/external_ids');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVVideos = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/videos');
+  getTmdbData(res, options);
 }
 
-export const getTVImages = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/images');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVLatest = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/latest');
+  getTmdbData(res, options);
 }
 
-export const getTVRecommendations = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/recommendations');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVPopular = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/popular');
+  getTmdbData(res, options);
 }
 
-export const getTVReviews = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/reviews');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getTVSimilar = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/similar');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getTVVideos = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/videos');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getTVLatest = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/latest');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getTVPopular = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/popular');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getTVTopRated = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/top_rated');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getTVTopRated = (req: Request, res: Response) => {
+  const options = getTvOptions(req, 'GET', '/top_rated');
+  getTmdbData(res, options);
 }

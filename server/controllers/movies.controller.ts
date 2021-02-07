@@ -1,174 +1,69 @@
-import { AxiosPromise, AxiosRequestConfig, Method } from 'axios';
-import { MovieInput, MovieQueryString } from '../interfaces/movies.interface';
 import { Request, Response } from 'express';
 
-import { apiKey } from '../env';
-import { assign } from 'lodash';
-import { baseUrl } from '../constants';
+import { getMovieOptions } from '../helpers';
 import { getTmdbData } from '../services';
 
-const getId = (req: Request): string => {
-  return req.params.movieId ? req.params.movieId : '';
+export const getMovieDetails = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET');
+  getTmdbData(res, options);
 }
 
-const getUrl = (id: string, pathParams: string): string => {
-  return `${baseUrl}/movie/${id}${pathParams}`;
+export const getMovieCredits = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/credits');
+  getTmdbData(res, options);
 }
 
-const getParams = (req: Request): MovieQueryString => {
-  const { append_to_response, language, page, region }: MovieInput = req.query;
-  let params = {
-    api_key: apiKey,
-  };
-  params = language ? assign(params, { language: language ? language : 'en-US' }) : params;
-  params = append_to_response ? assign(params, { append_to_response }) : params;
-  params = page ? assign(params, { page }) : params;
-  params = region ? assign(params, { region }) : params;
-  return params;
+export const getMovieExternalIds = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/external_ids');
+  getTmdbData(res, options);
 }
 
-const getOptions = (params: MovieQueryString, url: string, method: Method): AxiosRequestConfig => {
-  return {
-    method,
-    params,
-    url
-  }
+export const getMovieImages = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/images');
+  getTmdbData(res, options);
 }
 
-const getData = (req: Request, method: Method, pathParams = ''): AxiosPromise => {
-  const id = getId(req);
-  const url = getUrl(id, pathParams);
-  const params = getParams(req);
-  const options = getOptions(params, url, method);
-  return getTmdbData(options);
+export const getMovieRecommendations = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/recommendations');
+  getTmdbData(res, options);
 }
 
-export const getMovieDetails = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieReviews = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/reviews');
+  getTmdbData(res, options);
 }
 
-export const getMovieCredits = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/credits');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieSimilar = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/similar');
+  getTmdbData(res, options);
 }
 
-export const getMovieExternalIds = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/external_ids');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieVideos = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/videos');
+  getTmdbData(res, options);
 }
 
-export const getMovieImages = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/images');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieLatest = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/latest');
+  getTmdbData(res, options);
 }
 
-export const getMovieRecommendations = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/recommendations');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieNowPlaying = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/now_playing');
+  getTmdbData(res, options);
 }
 
-export const getMovieReviews = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/reviews');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMoviePopular = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/popular');
+  getTmdbData(res, options);
 }
 
-export const getMovieSimilar = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/similar');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieTopRated = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/top_rated');
+  getTmdbData(res, options);
 }
 
-export const getMovieVideos = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/videos');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getMovieLatest = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/latest');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getMovieNowPlaying = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/now_playing');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getMoviePopular = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/popular');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getMovieTopRated = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/top_rated');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
-}
-
-export const getMovieUpcoming = async (req: Request, res: Response) => {
-  try {
-    const resp = await getData(req, 'GET', '/upcoming');
-    res.json(resp.data);
-  }
-  catch (e) {
-    throw new Error(e);
-  }
+export const getMovieUpcoming = (req: Request, res: Response) => {
+  const options = getMovieOptions(req, 'GET', '/upcoming');
+  getTmdbData(res, options);
 }

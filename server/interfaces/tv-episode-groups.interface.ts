@@ -4,7 +4,7 @@ export interface TvEpisodeGroupInput {
 }
 
 // Query params Interface
-export interface TvEpisodeGroupQueryString {
+export interface TvEpisodeGroupParams {
   api_key: string;
   language?: string;
 }
