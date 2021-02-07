@@ -4,7 +4,7 @@ export interface GenresInput {
 }
 
 // Query String
-export interface GenresQueryString {
+export interface GenresParams {
   api_key: string;
   language: string;
 }

@@ -1,4 +1,4 @@
 // Input interfaces
-export interface CreditsQueryString {
+export interface CreditsParams {
   api_key: string;
 }

@@ -6,7 +6,7 @@ export interface PeopleInput {
 }
 
 // Query string
-export interface PeopleQueryString {
+export interface PeopleParams {
   append_to_response?: string;
   api_key: string;
   language?: string;

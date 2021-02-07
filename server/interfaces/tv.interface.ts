@@ -6,7 +6,7 @@ export interface TVInput {
 }
 
 // Query Params Interface
-export interface TVQueryString {
+export interface TVParams {
   api_key: string;
   append_to_response?: string;
   language?: string;

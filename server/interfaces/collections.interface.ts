@@ -4,7 +4,7 @@ export interface CollectionInput {
 }
 
 // Query String
-export interface CollectionQueryString {
+export interface CollectionParams {
   api_key: string;
-  language: string;
+  language?: string;
 }

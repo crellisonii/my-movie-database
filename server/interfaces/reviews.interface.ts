@@ -1,4 +1,4 @@
 // Query params interface
-export interface ReviewsQueryString {
+export interface ReviewsParam {
   api_key: string;
 }
