@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "my-movie-database-client"
+    }
+  },
+  "defaultProject": "my-movie-database-client",
+  "cli": {
+    "analytics": "a6717e7a-46f0-4f57-9f8e-f921350f7368"
+  }
 }
