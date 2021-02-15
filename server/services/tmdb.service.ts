@@ -8,6 +8,7 @@ export const getTmdbData = async (res: Response, options: AxiosRequestConfig) =>
     res.json(resp.data);
   }
   catch (e) {
-    throw new Error(e);
+    const errorData = e.response.data;
+    res.json(errorData);
   }
 }
