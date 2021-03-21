@@ -1,6 +1,8 @@
 export * from './collections.helper';
+export * from './configurations.helper';
 export * from './credits.helper';
 export * from './genres.helper';
+export * from './images.helper';
 export * from './movies.helper';
 export * from './people.helper';
 export * from './reviews.helper';
@@ -9,3 +11,4 @@ export * from './tv-episode-groups.helper';
 export * from './tv-episodes.helper';
 export * from './tv-season.helper';
 export * from './tv.helper';
+export * from './url-builder.helper';

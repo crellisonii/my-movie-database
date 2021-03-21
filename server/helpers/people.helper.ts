@@ -4,14 +4,14 @@ import { PeopleInput, PeopleParams } from "../interfaces";
 import { Request } from "express";
 import { apiKey } from "../env";
 import { assign } from "lodash";
-import { baseUrl } from "../constants";
+import { getPeoplePathParams } from "./url-builder.helper";
 
 const getPeopleId = (req: Request): string => {
   return req.params.personId ? req.params.personId : '';
 }
 
 const getPeopleUrl = (id: string, pathParams: string): string => {
-  return `${baseUrl}/person/${id}${pathParams}`;
+  return `${getPeoplePathParams(id)}${pathParams}`;
 }
 
 const getPeopleParams = (req: Request): PeopleParams => {

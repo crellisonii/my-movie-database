@@ -3,14 +3,14 @@ import { CollectionInput, CollectionParams } from "../interfaces";
 
 import { Request } from "express";
 import { apiKey } from "../env";
-import { baseUrl } from "../constants";
+import { getCollectionPathParams } from "./url-builder.helper";
 
 const getCollectionsId = (req: Request): string => {
   return req.params.collectionId ? req.params.collectionId : '';
 }
 
 const getCollectionsUrl = (id: string, pathParams: string): string => {
-  return `${baseUrl}/collection/${id}${pathParams ? pathParams : ''}`;
+  return `${getCollectionPathParams(id)}${pathParams ? pathParams : ''}`;
 }
 
 const getCollectionsParams = (req: Request): CollectionParams => {

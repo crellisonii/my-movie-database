@@ -4,14 +4,14 @@ import { TVInput, TVParams } from "../interfaces";
 import { Request } from "express";
 import { apiKey } from "../env";
 import { assign } from "lodash";
-import { baseUrl } from "../constants";
+import { getTvPathParams } from "./url-builder.helper";
 
 const getTvId = (req: Request): string => {
   return req.params.tvId ? req.params.tvId : '';
 }
 
 const getTvUrl = (id: string, pathParams: string): string => {
-  return `${baseUrl}/tv/${id}${pathParams}`;
+  return `${getTvPathParams(id)}${pathParams}`;
 }
 
 const getTvParams = (req: Request): TVParams => {

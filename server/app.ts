@@ -1,7 +1,9 @@
 import {
   collectionRouter,
+  configurationRouter,
   creditsRouter,
   genresRouter,
+  imagesRouter,
   movieRouter,
   peopleRouter,
   reviewsRouter,
@@ -25,9 +27,13 @@ app.use(express.json());
 
 app.use('/api/collection', collectionRouter);
 
+app.use('/api/configuration', configurationRouter);
+
 app.use('/api/credit', creditsRouter);
 
 app.use('/api/genre', genresRouter);
+
+app.use('/api/image', imagesRouter)
 
 app.use('/api/movie', movieRouter);
 

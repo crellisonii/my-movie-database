@@ -4,14 +4,14 @@ import { MovieInput, MovieParams } from "../interfaces";
 import { Request } from "express";
 import { apiKey } from "../env";
 import { assign } from "lodash";
-import { baseUrl } from "../constants";
+import { getMoviePathParams } from "./url-builder.helper";
 
 const getMovieId = (req: Request): string => {
   return req.params.movieId ? req.params.movieId : '';
 }
 
 const getMovieUrl = (id: string, pathParams: string): string => {
-  return `${baseUrl}/movie/${id}${pathParams}`;
+  return `${getMoviePathParams(id)}${pathParams}`;
 }
 
 const getMovieParams = (req: Request): MovieParams => {
