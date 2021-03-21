@@ -3,10 +3,10 @@ import { GenresInput, GenresParams } from "../interfaces";
 
 import { Request } from "express";
 import { apiKey } from "../env";
-import { baseUrl } from "../constants";
+import { getGenrePathParams } from "./url-builder.helper";
 
 const getGenreUrl = (pathParams: string): string => {
-  return `${baseUrl}/genre/${pathParams}`;
+  return `${getGenrePathParams()}${pathParams}`;
 }
 
 const getGenreParams = (req: Request): GenresParams => {

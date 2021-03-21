@@ -3,14 +3,14 @@ import { AxiosRequestConfig, Method } from "axios";
 import { Request } from "express";
 import { ReviewsParam } from "../interfaces";
 import { apiKey } from "../env";
-import { baseUrl } from "../constants";
+import { getReviewPathParams } from "./url-builder.helper";
 
 const getReviewsId = (req: Request): string => {
   return req.params.reviewsId ? req.params.reviewsId : '';
 }
 
 const getReviewsUrl = (id: string): string => {
-  return `${baseUrl}/review/${id}`;
+  return `${getReviewPathParams(id)}`;
 }
 
 const getReviewsParams = (): ReviewsParam => {

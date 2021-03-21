@@ -4,7 +4,7 @@ import { TvEpisodeInput, TvEpisodeParams } from "../interfaces";
 import { Request } from "express";
 import { apiKey } from "../env";
 import { assign } from "lodash";
-import { baseUrl } from "../constants";
+import { getTvEpisodePathParams } from "./url-builder.helper";
 
 const getTvEpisodesTvId = (req: Request): string => {
   return req.params.tvId ? req.params.tvId : '';
@@ -19,7 +19,7 @@ const getTvEpisodesEpisodeNumber = (req: Request): string => {
 }
 
 const getTvEpisodesUrl = (tvId: string, seasonNumber: string, episodeNumber: string, pathParams: string): string => {
-  return `${baseUrl}/tv/${tvId}/season/${seasonNumber}/episode/${episodeNumber}${pathParams}`;
+  return `${getTvEpisodePathParams(tvId, seasonNumber, episodeNumber)}${pathParams}`;
 }
 
 const getTvEpisodesParams = (req: Request): TvEpisodeParams => {

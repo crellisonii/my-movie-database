@@ -1,10 +1,10 @@
 import { AxiosRequestConfig, Method } from "axios";
 import { TvSeasonInput, TvSeasonParams } from "../interfaces";
+import { getTvPathParams, getTvSeasonPathParams } from "./url-builder.helper";
 
 import { Request } from "express";
 import { apiKey } from "../env";
 import { assign } from "lodash";
-import { baseUrl } from "../constants";
 
 const getTvSeasonTvId = (req: Request): string => {
   return req.params.tvId ? req.params.tvId : '';
@@ -15,7 +15,7 @@ const getTvSeasonSeasonNumber = (req: Request): string => {
 }
 
 const getTvSeasonUrl = (tvId: string, seasonNumber: string, pathParams: string): string => {
-  return `${baseUrl}/tv/${tvId}/season/${seasonNumber}${pathParams}`;
+  return `${getTvSeasonPathParams(tvId, seasonNumber)}${pathParams}`;
 }
 
 const getTvSeasonParams = (req: Request): TvSeasonParams => {

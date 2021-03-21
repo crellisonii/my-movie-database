@@ -4,10 +4,10 @@ import { SearchInput, SearchParams } from '../interfaces';
 import { Request } from 'express';
 import { apiKey } from '../env';
 import { assign } from 'lodash';
-import { baseUrl } from '../constants';
+import { getSearchPathParams } from './url-builder.helper';
 
 const getSearchUrl = (pathParams: string): string => {
-  return `${baseUrl}/search${pathParams}`;
+  return `${getSearchPathParams}${pathParams}`;
 };
 
 const getSearchParams = (req: Request): SearchParams => {
