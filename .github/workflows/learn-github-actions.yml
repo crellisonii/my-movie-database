@@ -1,11 +1,11 @@
-name: learn-github-actions
-on:
-  push:
-    paths:
-      - "**/package.json"
+name: Prettier
+on: push
 jobs:
-  check-bats-version:
+  run-prettier-server:
     runs-on: ubuntu-latest
+    container:
+      volumes:
+        - /client/
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
