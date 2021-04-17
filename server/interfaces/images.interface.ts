@@ -1,4 +1,4 @@
 export interface ImageInput {
-  size?: string;
-  imagePath?: string;
+	size?: string;
+	imagePath?: string;
 }

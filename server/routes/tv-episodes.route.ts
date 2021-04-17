@@ -1,9 +1,9 @@
 import {
-  getTvEpisodeCredits,
-  getTvEpisodeDetails,
-  getTvEpisodeExternalIds,
-  getTvEpisodeImages,
-  getTvEpisodeVideos
+	getTvEpisodeCredits,
+	getTvEpisodeDetails,
+	getTvEpisodeExternalIds,
+	getTvEpisodeImages,
+	getTvEpisodeVideos,
 } from "../controllers";
 
 import { Router } from "express";
