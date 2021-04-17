@@ -1,10 +1,10 @@
 // Input interfaces
 export interface CollectionInput {
-  language?: string;
+	language?: string;
 }
 
 // Query String
 export interface CollectionParams {
-  api_key: string;
-  language?: string;
+	api_key: string;
+	language?: string;
 }

@@ -6,24 +6,28 @@ import { apiKey } from "../env";
 import { getCollectionPathParams } from "./url-builder.helper";
 
 const getCollectionsId = (req: Request): string => {
-  return req.params.collectionId ? req.params.collectionId : '';
-}
+	return req.params.collectionId ? req.params.collectionId : "";
+};
 
 const getCollectionsUrl = (id: string, pathParams: string): string => {
-  return `${getCollectionPathParams(id)}${pathParams ? pathParams : ''}`;
-}
+	return `${getCollectionPathParams(id)}${pathParams ? pathParams : ""}`;
+};
 
 const getCollectionsParams = (req: Request): CollectionParams => {
-  const { language }: CollectionInput = req.query;
-  return {
-    api_key: apiKey,
-    language: language ? language : 'en-US'
-  };
-}
+	const { language }: CollectionInput = req.query;
+	return {
+		api_key: apiKey,
+		language: language ? language : "en-US",
+	};
+};
 
-export const getCollectionsOptions = (req: Request, method: Method, pathParams: string = ''): AxiosRequestConfig => {
-  const id = getCollectionsId(req);
-  const params = getCollectionsParams(req);
-  const url = getCollectionsUrl(id, pathParams);
-  return { method, params, url };
-}
+export const getCollectionsOptions = (
+	req: Request,
+	method: Method,
+	pathParams: string = ""
+): AxiosRequestConfig => {
+	const id = getCollectionsId(req);
+	const params = getCollectionsParams(req);
+	const url = getCollectionsUrl(id, pathParams);
+	return { method, params, url };
+};

@@ -1,17 +1,17 @@
 import {
-  getPersonCombinedCredits,
-  getPersonExternalIds,
-  getPersonImages,
-  getPersonTaggedImages,
-  getPersonTvCredits
-} from '../controllers/people.controller';
-import { getPersonDetails, getPersonMovieCredits } from '../controllers';
+	getPersonCombinedCredits,
+	getPersonExternalIds,
+	getPersonImages,
+	getPersonTaggedImages,
+	getPersonTvCredits,
+} from "../controllers/people.controller";
+import { getPersonDetails, getPersonMovieCredits } from "../controllers";
 
 import { Router } from "express";
 
 export const router = Router();
 
-const personId = '/:personId';
+const personId = "/:personId";
 
 router.get(personId, getPersonDetails);
 
