@@ -1,14 +1,14 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
-import { getCollectionsOptions } from '../helpers';
-import { getTmdbData } from '../services';
+import { getCollectionsOptions } from "../helpers";
+import { getTmdbData } from "../services";
 
 export const getCollectionsDetails = (req: Request, res: Response) => {
-  const options = getCollectionsOptions(req, 'GET');
-  getTmdbData(res, options)
-}
+	const options = getCollectionsOptions(req, "GET");
+	getTmdbData(res, options);
+};
 
 export const getCollectionsImages = (req: Request, res: Response) => {
-  const options = getCollectionsOptions(req, 'GET', '/images');
-  getTmdbData(res, options);
-}
+	const options = getCollectionsOptions(req, "GET", "/images");
+	getTmdbData(res, options);
+};

@@ -1,22 +1,22 @@
 import {
-  getTVCredits,
-  getTVDetails,
-  getTVEpisodeGroups,
-  getTVExternalIds,
-  getTVImages,
-  getTVLatest,
-  getTVPopular,
-  getTVRecommendations,
-  getTVReviews,
-  getTVSimilar,
-  getTVTopRated
+	getTVCredits,
+	getTVDetails,
+	getTVEpisodeGroups,
+	getTVExternalIds,
+	getTVImages,
+	getTVLatest,
+	getTVPopular,
+	getTVRecommendations,
+	getTVReviews,
+	getTVSimilar,
+	getTVTopRated,
 } from "../controllers";
 
 import { Router } from "express";
 
 export const router = Router();
 
-const tvId = '/:tvId';
+const tvId = "/:tvId";
 
 router.get(tvId, getTVDetails);
 
@@ -36,8 +36,8 @@ router.get(`${tvId}/similar`, getTVSimilar);
 
 router.get(`${tvId}/videos`);
 
-router.get('/latest', getTVLatest);
+router.get("/latest", getTVLatest);
 
-router.get('/popular', getTVPopular);
+router.get("/popular", getTVPopular);
 
-router.get('/top_rated', getTVTopRated);
+router.get("/top_rated", getTVTopRated);
