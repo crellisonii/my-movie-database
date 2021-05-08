@@ -3,6 +3,6 @@ import { getReviewsDetails } from "../controllers";
 
 export const router = Router();
 
-const reviewsId = '/:reviewsId';
+const reviewsId = "/:reviewsId";
 
 router.get(reviewsId, getReviewsDetails);

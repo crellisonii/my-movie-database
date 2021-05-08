@@ -3,6 +3,6 @@ import { getTvEpisodeGroups } from "../controllers";
 
 export const router = Router();
 
-const episodeGroupId = '/:episodeGroupId';
+const episodeGroupId = "/:episodeGroupId";
 
 router.get(episodeGroupId, getTvEpisodeGroups);

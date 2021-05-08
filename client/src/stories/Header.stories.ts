@@ -7,24 +7,24 @@ import Button from './button.component';
 import Header from './header.component';
 
 export default {
-  title: 'Example/Header',
-  component: Header,
-  decorators: [
-    moduleMetadata({
-      declarations: [Button],
-      imports: [CommonModule],
-    }),
-  ],
+	title: 'Example/Header',
+	component: Header,
+	decorators: [
+		moduleMetadata({
+			declarations: [Button],
+			imports: [CommonModule],
+		}),
+	],
 } as Meta;
 
 const Template: Story<Header> = (args: Header) => ({
-  component: Header,
-  props: args,
+	component: Header,
+	props: args,
 });
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
-  user: {},
+	user: {},
 };
 
 export const LoggedOut = Template.bind({});
