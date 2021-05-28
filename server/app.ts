@@ -1,5 +1,6 @@
 import {
 	collectionRouter,
+	compayRouter,
 	configurationRouter,
 	creditsRouter,
 	genresRouter,
@@ -29,6 +30,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/collection", collectionRouter);
+
+app.use("/api/company", compayRouter);
 
 app.use("/api/configuration", configurationRouter);
 
