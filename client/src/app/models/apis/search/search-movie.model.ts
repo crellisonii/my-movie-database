@@ -8,7 +8,7 @@ export interface SearchMovieInput {
 	year?: number;
 }
 
-interface SearchMovieResults {
+export interface SearchMovieResults {
 	adult?: boolean;
 	backdrop_path?: string | null;
 	genre_ids?: number[];

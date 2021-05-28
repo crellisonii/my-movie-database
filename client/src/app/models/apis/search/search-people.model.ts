@@ -8,7 +8,7 @@ export interface SearchPeopleInput {
 	region?: string;
 }
 
-interface SearchPeopleResult {
+export interface SearchPeopleResult {
 	adult?: boolean;
 	id?: number;
 	known_for?: (MovieResult | TVResult)[];

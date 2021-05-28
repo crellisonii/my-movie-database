@@ -4,7 +4,7 @@ export interface SearchCollectionInput {
 	query: string;
 }
 
-interface SearchCollectionResult {
+export interface SearchCollectionResult {
 	backdrop_path?: string | null;
 	id?: number;
 	name?: string;

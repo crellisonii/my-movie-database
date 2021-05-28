@@ -6,7 +6,7 @@ export interface SearchTVInput {
 	query: string;
 }
 
-interface SearchTVResult {
+export interface SearchTVResult {
 	backdrop_path?: string | null;
 	first_air_date?: string;
 	genre_ids?: number[];
