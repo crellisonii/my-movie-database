@@ -7,7 +7,7 @@ import { assign } from "lodash";
 import { getSearchPathParams } from "./url-builder.helper";
 
 const getSearchUrl = (pathParams: string): string => {
-	return `${getSearchPathParams}${pathParams}`;
+	return `${getSearchPathParams()}${pathParams}`;
 };
 
 const getSearchParams = (req: Request): SearchParams => {
