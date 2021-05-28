@@ -2,6 +2,10 @@ export const getCollectionPathParams = (id: string): string => {
 	return `/collection/${id}`;
 };
 
+export const getCompanyPathParams = (id: string): string => {
+	return `/company/${id}`;
+};
+
 export const getConfigurationPathParams = (): string => {
 	return "/configuration";
 };
