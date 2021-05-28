@@ -1,4 +1,5 @@
 import { router as collectionRouter } from "./collection.route";
+import { router as compayRouter } from "./companies.route";
 import { router as configurationRouter } from "./configuration.route";
 import { router as creditsRouter } from "./credits.route";
 import { router as genresRouter } from "./genres.route";
@@ -14,6 +15,7 @@ import { router as tvSeasonRouter } from "./tv-season.route";
 
 export {
 	collectionRouter,
+	compayRouter,
 	configurationRouter,
 	creditsRouter,
 	genresRouter,
