@@ -33,8 +33,8 @@ export class SearchService {
 		const url = `${this.baseUrl}/collection`;
 		const { language, page, query } = input;
 		let params = new HttpParams().set('query', query);
-		language ?? params.set('language', language);
-		page ?? params.set('page', `${page}`);
+		language ? (params = params.set('language', language)) : '';
+		page ? (params = params.set('page', `${page}`)) : '';
 		return this.http.get<SearchCollectionResponse>(url, {
 			params,
 			headers: this.headers,
@@ -53,13 +53,16 @@ export class SearchService {
 			year,
 		} = input;
 		let params = new HttpParams().set('query', query);
-		include_adult ?? params.set('include_adult', `${include_adult}`);
-		language ?? params.set('language', language);
-		page ?? params.set('page', `${page}`);
-		primary_release_year ??
-			params.set('primary_release_year', `${primary_release_year}`);
-		region ?? params.set('region', region);
-		year ?? params.set('year', `${year}`);
+		include_adult
+			? (params = params.set('include_adult', `${include_adult}`))
+			: '';
+		language ? (params = params.set('language', language)) : '';
+		page ? (params = params.set('page', `${page}`)) : '';
+		primary_release_year
+			? (params = params.set('primary_release_year', `${primary_release_year}`))
+			: '';
+		region ? (params = params.set('region', region)) : '';
+		year ? (params = params.set('year', `${year}`)) : '';
 		return this.http.get<SearchMovieResponse>(url, {
 			params,
 			headers: this.headers,
@@ -72,10 +75,12 @@ export class SearchService {
 		const url = `${this.baseUrl}/multi`;
 		const { include_adult, language, page, query, region } = input;
 		let params = new HttpParams().set('query', query);
-		include_adult ?? params.set('include_adult', `${include_adult}`);
-		language ?? params.set('language', language);
-		page ?? params.set('page', `${page}`);
-		region ?? params.set('region', region);
+		include_adult
+			? (params = params.set('include_adult', `${include_adult}`))
+			: '';
+		language ? (params = params.set('language', language)) : '';
+		page ? (params = params.set('page', `${page}`)) : '';
+		region ? (params = params.set('region', region)) : '';
 		return this.http.get<SearchMultipleResponse>(url, {
 			params,
 			headers: this.headers,
@@ -86,10 +91,12 @@ export class SearchService {
 		const url = `${this.baseUrl}/person`;
 		const { include_adult, language, page, query, region } = input;
 		let params = new HttpParams().set('query', query);
-		include_adult ?? params.set('include_adult', `${include_adult}`);
-		language ?? params.set('language', language);
-		page ?? params.set('page', `${page}`);
-		region ?? params.set('region', region);
+		include_adult
+			? (params = params.set('include_adult', `${include_adult}`))
+			: '';
+		language ? (params = params.set('language', language)) : '';
+		page ? (params = params.set('page', `${page}`)) : '';
+		region ? (params = params.set('region', region)) : '';
 		return this.http.get<SearchPeopleResponse>(url, {
 			params,
 			headers: this.headers,
@@ -100,11 +107,14 @@ export class SearchService {
 		const url = `${this.baseUrl}/tv`;
 		const { first_air_date_year, include_adult, language, page, query } = input;
 		let params = new HttpParams().set('query', query);
-		first_air_date_year ??
-			params.set('first_air_date_year', `${first_air_date_year}`);
-		include_adult ?? params.set('include_adult', `${include_adult}`);
-		language ?? params.set('language', language);
-		page ?? params.set('page', `${page}`);
+		first_air_date_year
+			? (params = params.set('first_air_date_year', `${first_air_date_year}`))
+			: '';
+		include_adult
+			? (params = params.set('include_adult', `${include_adult}`))
+			: '';
+		language ? (params = params.set('language', language)) : '';
+		page ? (params = params.set('page', `${page}`)) : '';
 		return this.http.get<SearchTVResponse>(url, {
 			params,
 			headers: this.headers,
