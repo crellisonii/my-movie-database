@@ -22,7 +22,7 @@ import { TestBed } from '@angular/core/testing';
 import { environment } from 'src/environments/environment';
 
 describe('SearchService', () => {
-	let searchService: SearchService;
+	let service: SearchService;
 	let testingController: HttpTestingController;
 	let mockCollectionResponse: SearchCollectionResponse;
 	let mockMovieResponse: SearchMovieResponse;
@@ -36,7 +36,7 @@ describe('SearchService', () => {
 			imports: [HttpClientTestingModule],
 		});
 		testingController = TestBed.inject(HttpTestingController);
-		searchService = TestBed.inject(SearchService);
+		service = TestBed.inject(SearchService);
 		mockCollectionResponse = MockCollectionResponse;
 		mockMovieResponse = MockMovieResponse;
 		mockMultipleResponse = MockMultipleResponse;
@@ -48,7 +48,7 @@ describe('SearchService', () => {
 		let result: SearchCollectionResponse;
 		let param = encodeURIComponent('The Lost Boys');
 		let url = `${baseUrl}/collection?query=${param}`;
-		searchService
+		service
 			.searchCollections({ query: 'The Lost Boys' })
 			.subscribe((response) => {
 				result = response;
@@ -62,11 +62,9 @@ describe('SearchService', () => {
 		let result: SearchMovieResponse;
 		let param = encodeURIComponent('The Goonies');
 		let url = `${baseUrl}/movie?query=${param}`;
-		searchService
-			.searchMovies({ query: 'The Goonies' })
-			.subscribe((response) => {
-				result = response;
-			});
+		service.searchMovies({ query: 'The Goonies' }).subscribe((response) => {
+			result = response;
+		});
 		const req = testingController.expectOne(url);
 		req.flush(mockMovieResponse);
 		expect(result).toEqual(mockMovieResponse);
@@ -76,11 +74,9 @@ describe('SearchService', () => {
 		let result: SearchMultipleResponse;
 		let param = encodeURIComponent('Sean Astin');
 		let url = `${baseUrl}/multi?query=${param}`;
-		searchService
-			.searchMultiple({ query: 'Sean Astin' })
-			.subscribe((response) => {
-				result = response;
-			});
+		service.searchMultiple({ query: 'Sean Astin' }).subscribe((response) => {
+			result = response;
+		});
 		const req = testingController.expectOne(url);
 		req.flush(mockMultipleResponse);
 		expect(result).toEqual(mockMultipleResponse);
@@ -90,11 +86,9 @@ describe('SearchService', () => {
 		let result: SearchPeopleResponse;
 		let param = encodeURIComponent('Sean Astin');
 		let url = `${baseUrl}/person?query=${param}`;
-		searchService
-			.searchPeople({ query: 'Sean Astin' })
-			.subscribe((response) => {
-				result = response;
-			});
+		service.searchPeople({ query: 'Sean Astin' }).subscribe((response) => {
+			result = response;
+		});
 		const req = testingController.expectOne(url);
 		req.flush(mockPeopleResponse);
 		expect(result).toEqual(mockPeopleResponse);
@@ -104,11 +98,9 @@ describe('SearchService', () => {
 		let result: SearchTVResponse;
 		let param = encodeURIComponent('Stranger Things');
 		let url = `${baseUrl}/tv?query=${param}`;
-		searchService
-			.searchTV({ query: 'Stranger Things' })
-			.subscribe((response) => {
-				result = response;
-			});
+		service.searchTV({ query: 'Stranger Things' }).subscribe((response) => {
+			result = response;
+		});
 		const req = testingController.expectOne(url);
 		req.flush(mockTVResponse);
 		expect(result).toEqual(mockTVResponse);
