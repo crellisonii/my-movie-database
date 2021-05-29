@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {
 	SearchCollectionInput,
 	SearchCollectionResponse,
+	SearchCompanyInput,
+	SearchCompanyResponse,
 	SearchMovieInput,
 	SearchMovieResponse,
 	SearchMultipleInput,
@@ -38,6 +40,19 @@ export class SearchService {
 		return this.http.get<SearchCollectionResponse>(url, {
 			params,
 			headers: this.headers,
+		});
+	}
+
+	searchCompanies(
+		input: SearchCompanyInput
+	): Observable<SearchCompanyResponse> {
+		const url = `${this.baseUrl}/company`;
+		const { page, query } = input;
+		let params = new HttpParams().set('query', query);
+		page ? (params = params.set('page', `${page}`)) : '';
+		return this.http.get<SearchCompanyResponse>(url, {
+			headers: this.headers,
+			params,
 		});
 	}
 

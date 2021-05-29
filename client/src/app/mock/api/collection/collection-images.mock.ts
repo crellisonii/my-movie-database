@@ -1,4 +1,13 @@
-import { CollectionsImages, CollectionsImagesResponse } from 'src/app/models';
+import {
+	CollectionsImages,
+	CollectionsImagesInput,
+	CollectionsImagesResponse,
+} from 'src/app/models';
+
+export const MockCollectionsImagesInput: CollectionsImagesInput = {
+	collectionId: 109076,
+	language: 'en-US',
+};
 
 const MockCollectionsImagesBackdrops: CollectionsImages = {
 	file_path: 'path to image',

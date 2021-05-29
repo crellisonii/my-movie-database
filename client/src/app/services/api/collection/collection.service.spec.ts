@@ -1,13 +1,20 @@
 import {
 	CollectionsDetailsResponse,
 	CollectionsImagesResponse,
+	CollectionsTranslationsResponse,
 } from 'src/app/models';
 import {
 	HttpClientTestingModule,
 	HttpTestingController,
 } from '@angular/common/http/testing';
 import {
+	MockCollectionTranslationsInput,
+	MockCollectionTranslationsResponse,
+} from 'src/app/mock/api/collection/collection-translations.mock';
+import {
+	MockCollectionsDetailsInput,
 	MockCollectionsDetailsResponse,
+	MockCollectionsImagesInput,
 	MockCollectionsImagesResponse,
 } from 'src/app/mock';
 
@@ -20,6 +27,7 @@ describe('CollectionService', () => {
 	let testingController: HttpTestingController;
 	let mockCollectionsDetails: CollectionsDetailsResponse;
 	let mockCollectionsImages: CollectionsImagesResponse;
+	let mockCollectionsTranslations: CollectionsTranslationsResponse;
 	let baseUrl = `${environment.apiUrl}/collection`;
 
 	beforeEach(() => {
@@ -30,18 +38,16 @@ describe('CollectionService', () => {
 		testingController = TestBed.inject(HttpTestingController);
 		mockCollectionsDetails = MockCollectionsDetailsResponse;
 		mockCollectionsImages = MockCollectionsImagesResponse;
+		mockCollectionsTranslations = MockCollectionTranslationsResponse;
 	});
 
 	it('should get details', () => {
 		let result: CollectionsDetailsResponse;
-		const id = 109076;
-		const language = 'en-US';
-		const url = `${baseUrl}/${id}?language=${language}`;
-		service
-			.getCollectionDetail({ collectionId: id, language })
-			.subscribe((response) => {
-				result = response;
-			});
+		const input = MockCollectionsDetailsInput;
+		const url = `${baseUrl}/${input.collectionId}?language=${input.language}`;
+		service.getCollectionDetail(input).subscribe((response) => {
+			result = response;
+		});
 		const req = testingController.expectOne(url);
 		req.flush(mockCollectionsDetails);
 		expect(result).toEqual(mockCollectionsDetails);
@@ -49,16 +55,25 @@ describe('CollectionService', () => {
 
 	it('should get images', () => {
 		let result: CollectionsImagesResponse;
-		const id = 109076;
-		const language = 'en-US';
-		const url = `${baseUrl}/${id}/images?language=${language}`;
-		service
-			.getCollectionImages({ collectionId: id, language })
-			.subscribe((response) => {
-				result = response;
-			});
+		const input = MockCollectionsImagesInput;
+		const url = `${baseUrl}/${input.collectionId}/images?language=${input.language}`;
+		service.getCollectionImages(input).subscribe((response) => {
+			result = response;
+		});
 		const req = testingController.expectOne(url);
 		req.flush(mockCollectionsImages);
 		expect(result).toEqual(mockCollectionsImages);
+	});
+
+	it('should get translations', () => {
+		let result: CollectionsTranslationsResponse;
+		const input = MockCollectionTranslationsInput;
+		const url = `${baseUrl}/${input.collectionId}/translations?language=${input.language}`;
+		service.getCollectionTranslations(input).subscribe((response) => {
+			result = response;
+		});
+		const req = testingController.expectOne(url);
+		req.flush(mockCollectionsTranslations);
+		expect(result).toEqual(mockCollectionsTranslations);
 	});
 });

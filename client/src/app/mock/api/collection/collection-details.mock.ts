@@ -1,7 +1,13 @@
 import {
+	CollectionsDetailsInput,
 	CollectionsDetailsParts,
 	CollectionsDetailsResponse,
 } from 'src/app/models';
+
+export const MockCollectionsDetailsInput: CollectionsDetailsInput = {
+	collectionId: 109076,
+	language: 'en-US',
+};
 
 const MockCollectionsDetailsParts: CollectionsDetailsParts = {
 	id: 1,
