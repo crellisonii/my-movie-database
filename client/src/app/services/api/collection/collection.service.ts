@@ -1,6 +1,8 @@
 import {
 	CollectionsDetailsInput,
 	CollectionsDetailsResponse,
+	CollectionsTranslationsInput,
+	CollectionsTranslationsResponse,
 } from 'src/app/models';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -38,6 +40,19 @@ export class CollectionService {
 		let params = new HttpParams();
 		language ? (params = params.set('language', language)) : '';
 		return this.http.get<CollectionsDetailsResponse>(url, {
+			headers: this.headers,
+			params,
+		});
+	}
+
+	getCollectionTranslations(
+		input: CollectionsTranslationsInput
+	): Observable<CollectionsTranslationsResponse> {
+		const { collectionId, language } = input;
+		const url = `${this.baseUrl}/${collectionId}/translations`;
+		let params = new HttpParams();
+		language ? (params = params.set('language', language)) : '';
+		return this.http.get<CollectionsTranslationsResponse>(url, {
 			headers: this.headers,
 			params,
 		});
