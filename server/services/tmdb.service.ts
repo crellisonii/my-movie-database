@@ -12,8 +12,6 @@ export const getTmdbData = async (
 			baseURL,
 		});
 		const resp = await getAxios(options);
-		console.log(baseURL);
-		console.log(options.url);
 		res.json(resp.data);
 	} catch (e) {
 		const errorData = e.response.data;
