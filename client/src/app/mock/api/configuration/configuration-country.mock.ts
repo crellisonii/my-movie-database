@@ -1,4 +1,4 @@
-import { ConfigurationCountriesResponse } from 'src/app/models/apis/configurations';
+import { ConfigurationCountriesResponse } from 'src/app/models';
 
 const MockCountryOne: ConfigurationCountriesResponse = {
 	iso_3166_1: 'codeOne',

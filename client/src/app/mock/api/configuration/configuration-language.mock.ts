@@ -1,4 +1,4 @@
-import { ConfigurationLanguageResponse } from 'src/app/models/apis/configurations';
+import { ConfigurationLanguageResponse } from 'src/app/models';
 
 const MockConfigurationLanguageOne: ConfigurationLanguageResponse = {
 	iso_639_1: 'codeOne',

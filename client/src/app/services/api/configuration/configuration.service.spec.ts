@@ -4,7 +4,7 @@ import {
 	ConfigurationLanguageResponse,
 	ConfigurationResponse,
 	ConfigurationTimezoneResponse,
-} from 'src/app/models/apis/configurations';
+} from 'src/app/models';
 import {
 	HttpClientTestingModule,
 	HttpTestingController,
