@@ -7,10 +7,13 @@ import {
 	MockMovieResponse,
 	MockMultipleResponse,
 	MockPeopleResponse,
+	MockSearchCompanyInput,
+	MockSearchCompanyResponse,
 	MockTVResponse,
 } from 'src/app/mock';
 import {
 	SearchCollectionResponse,
+	SearchCompanyResponse,
 	SearchMovieResponse,
 	SearchMultipleResponse,
 	SearchPeopleResponse,
@@ -25,6 +28,7 @@ describe('SearchService', () => {
 	let service: SearchService;
 	let testingController: HttpTestingController;
 	let mockCollectionResponse: SearchCollectionResponse;
+	let mockCompanyResponse: SearchCompanyResponse;
 	let mockMovieResponse: SearchMovieResponse;
 	let mockMultipleResponse: SearchMultipleResponse;
 	let mockPeopleResponse: SearchPeopleResponse;
@@ -38,6 +42,7 @@ describe('SearchService', () => {
 		testingController = TestBed.inject(HttpTestingController);
 		service = TestBed.inject(SearchService);
 		mockCollectionResponse = MockCollectionResponse;
+		mockCompanyResponse = MockSearchCompanyResponse;
 		mockMovieResponse = MockMovieResponse;
 		mockMultipleResponse = MockMultipleResponse;
 		mockPeopleResponse = MockPeopleResponse;
@@ -56,6 +61,20 @@ describe('SearchService', () => {
 		const req = testingController.expectOne(url);
 		req.flush(mockCollectionResponse);
 		expect(result).toEqual(mockCollectionResponse);
+	});
+
+	it('should get companies', () => {
+		let result: SearchCompanyResponse;
+		const input = MockSearchCompanyInput;
+		let url = `${baseUrl}/company?query=${encodeURIComponent(
+			input.query
+		)}&page=${input.page}`;
+		service.searchCompanies(input).subscribe((response) => {
+			result = response;
+		});
+		const req = testingController.expectOne(url);
+		req.flush(mockCompanyResponse);
+		expect(result).toEqual(mockCompanyResponse);
 	});
 
 	it('should get movie', () => {
