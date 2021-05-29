@@ -10,5 +10,5 @@ export interface ConfigurationImages {
 
 export interface ConfigurationResponse {
 	change_keys?: string[];
-	images?: ConfigurationImages[];
+	images?: ConfigurationImages;
 }
