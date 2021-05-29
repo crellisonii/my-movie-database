@@ -1,4 +1,5 @@
 export * from "./collections.controller";
+export * from "./companies.controller";
 export * from "./configurations.controller";
 export * from "./credits.controller";
 export * from "./genres.controller";

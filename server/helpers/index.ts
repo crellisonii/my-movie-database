@@ -1,4 +1,5 @@
 export * from "./collections.helper";
+export * from "./companies.helper";
 export * from "./configurations.helper";
 export * from "./credits.helper";
 export * from "./genres.helper";

@@ -8,6 +8,11 @@ export const getSearchCollections = (req: Request, res: Response) => {
 	getTmdbData(res, options);
 };
 
+export const getSearchCompanies = (req: Request, res: Response) => {
+	const options = getSearchOptions(req, "/company", "GET");
+	getTmdbData(res, options);
+};
+
 export const getSearchMovies = (req: Request, res: Response) => {
 	const options = getSearchOptions(req, "/movie", "GET");
 	getTmdbData(res, options);

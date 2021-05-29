@@ -1,4 +1,5 @@
 export * from "./collections.interface";
+export * from "./companies.interface";
 export * from "./configurations.interface";
 export * from "./credits.interface";
 export * from "./genres.interface";

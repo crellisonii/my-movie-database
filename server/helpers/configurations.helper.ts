@@ -5,7 +5,7 @@ import { apiKey } from "../env";
 import { getConfigurationPathParams } from ".";
 
 const getConfigurationsUrl = (pathParams: string): string => {
-	return `${getConfigurationPathParams}/${pathParams}`;
+	return `${getConfigurationPathParams()}${pathParams}`;
 };
 
 const getConfigurationsParams = (): ConfigurationParams => {
