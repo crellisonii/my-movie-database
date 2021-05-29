@@ -1,7 +1,4 @@
-import {
-	CompanyDetailsInput,
-	CompanyDetailsResponse,
-} from 'src/app/models/apis/companies';
+import { CompanyDetailsInput, CompanyDetailsResponse } from 'src/app/models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';

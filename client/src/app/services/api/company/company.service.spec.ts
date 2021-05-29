@@ -14,7 +14,7 @@ import {
 	MockCompanyDetailsResponse,
 	MockCompanyImagesInput,
 	MockCompanyImagesResponse,
-} from 'src/app/mock/api/company';
+} from 'src/app/mock/';
 
 import { CompanyService } from './company.service';
 import { TestBed } from '@angular/core/testing';
