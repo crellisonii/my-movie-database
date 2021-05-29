@@ -1,4 +1,4 @@
-import { ConfigurationTimezoneResponse } from 'src/app/models/apis/configurations';
+import { ConfigurationTimezoneResponse } from 'src/app/models';
 
 const MockConfigurationTimezone: ConfigurationTimezoneResponse = {
 	iso_3166_1: 'codeOne',

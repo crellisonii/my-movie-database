@@ -1,7 +1,4 @@
-import {
-	ConfigurationImages,
-	ConfigurationResponse,
-} from 'src/app/models/apis/configurations';
+import { ConfigurationImages, ConfigurationResponse } from 'src/app/models';
 
 const MockConfigurationImages: ConfigurationImages = {
 	base_url: 'baseUrl',

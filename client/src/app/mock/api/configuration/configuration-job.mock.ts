@@ -1,4 +1,4 @@
-import { ConfigurationJobsResponse } from 'src/app/models/apis/configurations';
+import { ConfigurationJobsResponse } from 'src/app/models';
 
 const MockConfigurationJobOne: ConfigurationJobsResponse = {
 	department: 'actor',
