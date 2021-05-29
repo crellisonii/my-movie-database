@@ -1,4 +1,4 @@
-import { CollectionService, SearchService } from '../services';
+import { CollectionService, CompanyService, SearchService } from '../services';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -7,6 +7,6 @@ import { NgModule } from '@angular/core';
 	declarations: [],
 	imports: [HttpClientModule],
 	exports: [HttpClientModule],
-	providers: [CollectionService, SearchService],
+	providers: [CollectionService, CompanyService, SearchService],
 })
 export class ServicesModule {}
