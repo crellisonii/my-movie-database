@@ -3,7 +3,6 @@ export * from "./companies.helper";
 export * from "./configurations.helper";
 export * from "./credits.helper";
 export * from "./genres.helper";
-export * from "./images.helper";
 export * from "./movies.helper";
 export * from "./people.helper";
 export * from "./reviews.helper";

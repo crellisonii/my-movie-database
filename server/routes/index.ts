@@ -3,7 +3,6 @@ import { router as compayRouter } from "./companies.route";
 import { router as configurationRouter } from "./configuration.route";
 import { router as creditsRouter } from "./credits.route";
 import { router as genresRouter } from "./genres.route";
-import { router as imagesRouter } from "./images.route";
 import { router as movieRouter } from "./movies.route";
 import { router as peopleRouter } from "./people.route";
 import { router as reviewsRouter } from "./reviews.route";
@@ -19,7 +18,6 @@ export {
 	configurationRouter,
 	creditsRouter,
 	genresRouter,
-	imagesRouter,
 	movieRouter,
 	peopleRouter,
 	reviewsRouter,

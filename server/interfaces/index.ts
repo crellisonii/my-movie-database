@@ -3,7 +3,6 @@ export * from "./companies.interface";
 export * from "./configurations.interface";
 export * from "./credits.interface";
 export * from "./genres.interface";
-export * from "./images.interface";
 export * from "./movies.interface";
 export * from "./people.interface";
 export * from "./reviews.interface";
