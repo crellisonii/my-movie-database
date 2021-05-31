@@ -4,7 +4,6 @@ import {
 	configurationRouter,
 	creditsRouter,
 	genresRouter,
-	imagesRouter,
 	movieRouter,
 	peopleRouter,
 	reviewsRouter,
@@ -38,8 +37,6 @@ app.use("/api/configuration", configurationRouter);
 app.use("/api/credit", creditsRouter);
 
 app.use("/api/genre", genresRouter);
-
-app.use("/api/image", imagesRouter);
 
 app.use("/api/movie", movieRouter);
 

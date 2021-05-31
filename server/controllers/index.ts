@@ -3,7 +3,6 @@ export * from "./companies.controller";
 export * from "./configurations.controller";
 export * from "./credits.controller";
 export * from "./genres.controller";
-export * from "./images.controller";
 export * from "./movies.controller";
 export * from "./people.controller";
 export * from "./reviews.controller";
