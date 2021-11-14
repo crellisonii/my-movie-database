@@ -10,7 +10,6 @@ export interface SearchInput {
 }
 
 export interface SearchParams {
-	api_key: string;
 	first_air_date_year?: number;
 	include_adult?: boolean;
 	language?: string;

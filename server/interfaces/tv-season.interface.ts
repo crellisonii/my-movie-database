@@ -6,7 +6,6 @@ export interface TvSeasonInput {
 
 // Query Parms Interface
 export interface TvSeasonParams {
-	api_key: string;
 	append_to_response?: string;
 	language?: string;
 }
