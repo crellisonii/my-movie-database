@@ -1,24 +1,23 @@
-import { AxiosRequestConfig, Method } from "axios";
 import { MovieInput, MovieParams } from "../interfaces";
 
 import { Request } from "express";
-import { apiKey } from "../env";
+import { UrlOptions } from "../interfaces/url-options.interface";
 import { assign } from "lodash";
-import { getMoviePathParams } from "./url-builder.helper";
+
+const moviePath = "/movie";
 
 const getMovieId = (req: Request): string => {
 	return req.params.movieId ? req.params.movieId : "";
 };
 
 const getMovieUrl = (id: string, pathParams: string): string => {
-	return `${getMoviePathParams(id)}${pathParams}`;
+	const movieString = `${moviePath}/${id}`;
+	return `${movieString}${pathParams}`;
 };
 
 const getMovieParams = (req: Request): MovieParams => {
 	const { append_to_response, language, page, region }: MovieInput = req.query;
-	let params = {
-		api_key: apiKey,
-	};
+	let params = {};
 	params = language
 		? assign(params, { language: language ? language : "en-US" })
 		: params;
@@ -30,11 +29,10 @@ const getMovieParams = (req: Request): MovieParams => {
 
 export const getMovieOptions = (
 	req: Request,
-	method: Method,
-	pathParams: string = ""
-): AxiosRequestConfig => {
+	pathString: string = ""
+): UrlOptions => {
 	const id = getMovieId(req);
 	const params = getMovieParams(req);
-	const url = getMovieUrl(id, pathParams);
-	return { method, params, url };
+	const pathParams = getMovieUrl(id, pathString);
+	return { axiosConfig: { params }, pathParams };
 };

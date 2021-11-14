@@ -1,13 +1,13 @@
-import { AxiosRequestConfig, Method } from "axios";
 import { SearchInput, SearchParams } from "../interfaces";
 
 import { Request } from "express";
-import { apiKey } from "../env";
+import { UrlOptions } from "../interfaces/url-options.interface";
 import { assign } from "lodash";
-import { getSearchPathParams } from "./url-builder.helper";
+
+const searchPath = "/search";
 
 const getSearchUrl = (pathParams: string): string => {
-	return `${getSearchPathParams()}${pathParams}`;
+	return `${searchPath}${pathParams}`;
 };
 
 const getSearchParams = (req: Request): SearchParams => {
@@ -22,7 +22,6 @@ const getSearchParams = (req: Request): SearchParams => {
 		year,
 	}: SearchInput = req.query;
 	let params: SearchParams = {
-		api_key: apiKey,
 		query: query ? query : "",
 	};
 	params = first_air_date_year
@@ -41,10 +40,9 @@ const getSearchParams = (req: Request): SearchParams => {
 
 export const getSearchOptions = (
 	req: Request,
-	pathParams: string,
-	method: Method
-): AxiosRequestConfig => {
+	pathString: string
+): UrlOptions => {
 	const params = getSearchParams(req);
-	const url = getSearchUrl(pathParams);
-	return { method, params, url };
+	const pathParams = getSearchUrl(pathString);
+	return { axiosConfig: { params }, pathParams };
 };

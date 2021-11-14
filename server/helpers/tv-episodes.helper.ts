@@ -1,10 +1,12 @@
-import { AxiosRequestConfig, Method } from "axios";
 import { TvEpisodeInput, TvEpisodeParams } from "../interfaces";
 
 import { Request } from "express";
-import { apiKey } from "../env";
+import { UrlOptions } from "../interfaces/url-options.interface";
 import { assign } from "lodash";
-import { getTvEpisodePathParams } from "./url-builder.helper";
+
+const tvPath = "/tv";
+const seasonPath = "/season";
+const episodePath = "/episode";
 
 const getTvEpisodesTvId = (req: Request): string => {
 	return req.params.tvId ? req.params.tvId : "";
@@ -24,17 +26,15 @@ const getTvEpisodesUrl = (
 	episodeNumber: string,
 	pathParams: string
 ): string => {
-	return `${getTvEpisodePathParams(
-		tvId,
-		seasonNumber,
-		episodeNumber
-	)}${pathParams}`;
+	const tvString = `${tvPath}/${tvId}`;
+	const seasonString = `${seasonPath}/${seasonNumber}`;
+	const episodeString = `${episodePath}/${episodeNumber}`;
+	return `${tvString}${seasonString}${episodeString}${pathParams}`;
 };
 
 const getTvEpisodesParams = (req: Request): TvEpisodeParams => {
 	const { append_to_response, language }: TvEpisodeInput = req.query;
 	let params: TvEpisodeParams = {
-		api_key: apiKey,
 		language: language ? language : "en-US",
 	};
 	params = append_to_response ? assign(params, { append_to_response }) : params;
@@ -43,13 +43,17 @@ const getTvEpisodesParams = (req: Request): TvEpisodeParams => {
 
 export const getTvEpisodesOptions = (
 	req: Request,
-	method: Method,
-	pathParams: string = ""
-): AxiosRequestConfig => {
+	pathString: string = ""
+): UrlOptions => {
 	const tvId = getTvEpisodesTvId(req);
 	const seasonNumber = getTvEpisodesSeasonNumber(req);
 	const episodeNumber = getTvEpisodesEpisodeNumber(req);
 	const params = getTvEpisodesParams(req);
-	const url = getTvEpisodesUrl(tvId, seasonNumber, episodeNumber, pathParams);
-	return { method, params, url };
+	const pathParams = getTvEpisodesUrl(
+		tvId,
+		seasonNumber,
+		episodeNumber,
+		pathString
+	);
+	return { axiosConfig: { params }, pathParams };
 };

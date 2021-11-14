@@ -1,32 +1,23 @@
-import { AxiosRequestConfig, Method } from "axios";
-
-import { CompanyParams } from "../interfaces";
 import { Request } from "express";
-import { apiKey } from "../env";
-import { getCompanyPathParams } from "./url-builder.helper";
+import { UrlOptions } from "../interfaces/url-options.interface";
+
+const companyPath = "/company";
 
 const getCompanyId = (req: Request): string => {
 	return req.params.companyId ?? "";
 };
 
 const getCompanyUrl = (id: string, pathParams: string): string => {
-	return `${getCompanyPathParams(id)}${pathParams}`;
-};
-
-const getCompanyParams = (): CompanyParams => {
-	return {
-		api_key: apiKey,
-	};
+	const companyString = `${companyPath}/${id}`;
+	return `${companyString}${pathParams}`;
 };
 
 export const getCompanyOptions = (
 	req: Request,
-	method: Method,
-	pathParams: string = ""
-): AxiosRequestConfig => {
+	pathString: string = ""
+): UrlOptions => {
 	const id = getCompanyId(req);
-	const params = getCompanyParams();
-	const url = getCompanyUrl(id, pathParams);
-	console.log("id, params, url: ", id, params, url);
-	return { method, params, url };
+	const pathParams = getCompanyUrl(id, pathString);
+	const params = {};
+	return { axiosConfig: { params }, pathParams };
 };

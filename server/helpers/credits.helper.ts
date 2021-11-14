@@ -1,30 +1,19 @@
-import { AxiosRequestConfig, Method } from "axios";
-
-import { CreditsParams } from "../interfaces";
 import { Request } from "express";
-import { apiKey } from "../env";
-import { getCreditsPathParams } from "./url-builder.helper";
+import { UrlOptions } from "../interfaces/url-options.interface";
+
+const creditPath = "/credit";
 
 const getCreditsId = (req: Request): string => {
 	return req.params.creditId ? req.params.creditId : "";
 };
 
 const getCreditsUrl = (id: string): string => {
-	return getCreditsPathParams(id);
+	return `${creditPath}/${id}`;
 };
 
-const getCreditsParams = (): CreditsParams => {
-	return {
-		api_key: apiKey,
-	};
-};
-
-export const getCreditsOptions = (
-	req: Request,
-	method: Method
-): AxiosRequestConfig => {
+export const getCreditsOptions = (req: Request): UrlOptions => {
 	const id = getCreditsId(req);
-	const params = getCreditsParams();
-	const url = getCreditsUrl(id);
-	return { method, params, url };
+	const pathParams = getCreditsUrl(id);
+	const params = {};
+	return { axiosConfig: { params }, pathParams };
 };
