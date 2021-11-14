@@ -4,16 +4,16 @@ import { getCollectionsOptions } from "../helpers";
 import { getTmdbData } from "../services";
 
 export const getCollectionsDetails = (req: Request, res: Response) => {
-	const options = getCollectionsOptions(req, "GET");
+	const options = getCollectionsOptions(req);
 	getTmdbData(res, options);
 };
 
 export const getCollectionsImages = (req: Request, res: Response) => {
-	const options = getCollectionsOptions(req, "GET", "/images");
+	const options = getCollectionsOptions(req, "/images");
 	getTmdbData(res, options);
 };
 
 export const getCollectionsTranslations = (req: Request, res: Response) => {
-	const options = getCollectionsOptions(req, "GET", "/translations");
+	const options = getCollectionsOptions(req, "/translations");
 	getTmdbData(res, options);
 };

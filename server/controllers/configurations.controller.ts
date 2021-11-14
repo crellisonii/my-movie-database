@@ -4,22 +4,22 @@ import { getConfigurationsOptions } from "../helpers";
 import { getTmdbData } from "../services";
 
 export const getConfiguration = (req: Request, res: Response) => {
-	const options = getConfigurationsOptions("GET");
+	const options = getConfigurationsOptions();
 	getTmdbData(res, options);
 };
 
 export const getConfigurationCountries = (req: Request, res: Response) => {
-	const options = getConfigurationsOptions("GET", "/countries");
+	const options = getConfigurationsOptions("/countries");
 	getTmdbData(res, options);
 };
 
 export const getConfigurationJobs = (req: Request, res: Response) => {
-	const options = getConfigurationsOptions("GET", "/jobs");
+	const options = getConfigurationsOptions("/jobs");
 	getTmdbData(res, options);
 };
 
 export const getConfigurationLanguages = (req: Request, res: Response) => {
-	const options = getConfigurationsOptions("GET", "/languages");
+	const options = getConfigurationsOptions("/languages");
 	getTmdbData(res, options);
 };
 
@@ -27,11 +27,11 @@ export const getConfigurationPrimaryTranslations = (
 	req: Request,
 	res: Response
 ) => {
-	const options = getConfigurationsOptions("GET", "/primary_translations");
+	const options = getConfigurationsOptions("/primary_translations");
 	getTmdbData(res, options);
 };
 
 export const getConfigurationTimezones = (req: Request, res: Response) => {
-	const options = getConfigurationsOptions("GET", "/timezones");
+	const options = getConfigurationsOptions("/timezones");
 	getTmdbData(res, options);
 };
