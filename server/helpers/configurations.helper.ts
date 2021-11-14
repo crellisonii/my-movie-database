@@ -1,24 +1,17 @@
 import { AxiosRequestConfig, Method } from "axios";
 
-import { ConfigurationParams } from "../interfaces";
-import { apiKey } from "../env";
-import { getConfigurationPathParams } from ".";
+import { UrlOptions } from "../interfaces/url-options.interface";
+
+const configurationPath = "/configuration";
 
 const getConfigurationsUrl = (pathParams: string): string => {
-	return `${getConfigurationPathParams}/${pathParams}`;
-};
-
-const getConfigurationsParams = (): ConfigurationParams => {
-	return {
-		api_key: apiKey,
-	};
+	return `${configurationPath}${pathParams}`;
 };
 
 export const getConfigurationsOptions = (
-	method: Method,
-	pathParam: string = ""
-): AxiosRequestConfig => {
-	const url = getConfigurationsUrl(pathParam);
-	const params = getConfigurationsParams();
-	return { method, params, url };
+	pathString: string = ""
+): UrlOptions => {
+	const pathParams = getConfigurationsUrl(pathString);
+	const params = {};
+	return { axiosConfig: { params }, pathParams };
 };

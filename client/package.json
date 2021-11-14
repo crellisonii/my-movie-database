@@ -8,11 +8,7 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
-		"format": "prettier --write src/**/*.ts",
-		"docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-		"storybook": "npm run docs:json && start-storybook -p 6006",
-		"build-storybook": "npm run docs:json && build-storybook",
-		"build:prod": "cross-env NODE_ENV=production ng build --prod"
+		"format": "prettier --write src/**/*.ts"
 	},
 	"private": true,
 	"dependencies": {
@@ -40,12 +36,6 @@
 		"@angular-devkit/build-angular": "~0.1001.0",
 		"@angular/cli": "~10.1.0",
 		"@angular/compiler-cli": "~10.1.0",
-		"@babel/core": "^7.12.16",
-		"@compodoc/compodoc": "^1.1.11",
-		"@storybook/addon-actions": "^6.1.17",
-		"@storybook/addon-essentials": "^6.1.17",
-		"@storybook/addon-links": "^6.1.17",
-		"@storybook/angular": "^6.1.17",
 		"@tailwindcss/aspect-ratio": "latest",
 		"@tailwindcss/forms": "latest",
 		"@tailwindcss/line-clamp": "latest",
@@ -54,7 +44,6 @@
 		"@types/jasminewd2": "~2.0.3",
 		"@types/node": "^12.11.1",
 		"autoprefixer": "^10.2.3",
-		"babel-loader": "^8.2.2",
 		"codelyzer": "^6.0.0",
 		"cross-env": "^7.0.3",
 		"jasmine-core": "~3.6.0",

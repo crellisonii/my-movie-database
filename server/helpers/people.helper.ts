@@ -1,23 +1,23 @@
-import { AxiosRequestConfig, Method } from "axios";
 import { PeopleInput, PeopleParams } from "../interfaces";
 
 import { Request } from "express";
-import { apiKey } from "../env";
+import { UrlOptions } from "../interfaces/url-options.interface";
 import { assign } from "lodash";
-import { getPeoplePathParams } from "./url-builder.helper";
+
+const peoplePath = "/person";
 
 const getPeopleId = (req: Request): string => {
 	return req.params.personId ? req.params.personId : "";
 };
 
 const getPeopleUrl = (id: string, pathParams: string): string => {
-	return `${getPeoplePathParams(id)}${pathParams}`;
+	const peopleString = `${peoplePath}/${id}`;
+	return `${peopleString}${pathParams}`;
 };
 
 const getPeopleParams = (req: Request): PeopleParams => {
 	const { append_to_response, language, page }: PeopleInput = req.query;
 	let params = {
-		api_key: apiKey,
 		language: language ? language : "en-US",
 	};
 	params = append_to_response ? assign(params, { append_to_response }) : params;
@@ -27,11 +27,10 @@ const getPeopleParams = (req: Request): PeopleParams => {
 
 export const getPeopleOptions = (
 	req: Request,
-	method: Method,
-	pathParams: string = ""
-): AxiosRequestConfig => {
+	pathString: string = ""
+): UrlOptions => {
 	const id = getPeopleId(req);
 	const params = getPeopleParams(req);
-	const url = getPeopleUrl(id, pathParams);
-	return { method, params, url };
+	const pathParams = getPeopleUrl(id, pathString);
+	return { pathParams, axiosConfig: { params } };
 };

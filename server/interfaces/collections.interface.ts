@@ -5,6 +5,5 @@ export interface CollectionInput {
 
 // Query String
 export interface CollectionParams {
-	api_key: string;
 	language?: string;
 }

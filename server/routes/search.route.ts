@@ -1,5 +1,6 @@
 import {
 	getSearchCollections,
+	getSearchCompanies,
 	getSearchMovies,
 	getSearchMulti,
 	getSearchPerson,
@@ -11,6 +12,8 @@ import { Router } from "express";
 export const router = Router();
 
 router.get("/collection", getSearchCollections);
+
+router.get("/company", getSearchCompanies);
 
 router.get("/movie", getSearchMovies);
 

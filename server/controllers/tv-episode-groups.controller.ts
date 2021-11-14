@@ -4,6 +4,6 @@ import { getTmdbData } from "../services";
 import { getTvEpisodeGroupsOptions } from "../helpers";
 
 export const getTvEpisodeGroups = (req: Request, res: Response) => {
-	const options = getTvEpisodeGroupsOptions(req, "GET");
+	const options = getTvEpisodeGroupsOptions(req);
 	getTmdbData(res, options);
 };

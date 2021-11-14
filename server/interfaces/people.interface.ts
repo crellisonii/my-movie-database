@@ -8,7 +8,6 @@ export interface PeopleInput {
 // Query string
 export interface PeopleParams {
 	append_to_response?: string;
-	api_key: string;
 	language?: string;
 	page?: number;
 }
